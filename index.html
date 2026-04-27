@@ -3,233 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varun Kollipara | Portfolio</title>
+    <title>Varun Kollipara — Software Engineer</title>
+    <meta name="description" content="Varun Kollipara is a Computer Science student at the University of Minnesota and a software engineer building iOS apps, full-stack web platforms, and AI products.">
+    <meta name="author" content="Varun Kollipara">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Varun Kollipara — Software Engineer">
+    <meta property="og:description" content="Computer Science @ University of Minnesota. iOS apps, full-stack development, and AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/profile.jpg">
+
+    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        accent: {
+                            DEFAULT: '#22d3ee',
+                            soft: '#67e8f9',
+                            deep: '#0891b2',
+                        },
+                        ink: {
+                            900: '#0b1120',
+                            800: '#0f172a',
+                            700: '#1e293b',
+                            600: '#334155',
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0b1120;
+            background-image:
+                radial-gradient(at 20% 0%, rgba(34, 211, 238, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, rgba(34, 211, 238, 0.06) 0px, transparent 50%);
+            background-attachment: fixed;
         }
+
         .section-fade-in {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .section-fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .accent-gradient {
+            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.7) 100%);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 211, 238, 0.4);
+            box-shadow: 0 20px 40px -20px rgba(34, 211, 238, 0.25);
+        }
+
+        .chip {
+            background: rgba(34, 211, 238, 0.08);
+            color: #67e8f9;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        .timeline-dot {
+            box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15);
+        }
+
+        a.nav-link {
+            position: relative;
+        }
+        a.nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background-color: #22d3ee;
+            transition: width 0.3s ease;
+        }
+        a.nav-link:hover::after {
+            width: 100%;
+        }
+
+        ::selection {
+            background-color: rgba(34, 211, 238, 0.3);
+            color: white;
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200 leading-relaxed">
+<body class="text-slate-300 leading-relaxed antialiased">
 
     <!-- Header -->
-    <header class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-10 border-b border-gray-700">
+    <header class="bg-ink-900/80 backdrop-blur-md fixed top-0 left-0 right-0 z-20 border-b border-slate-800/60">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white hover:text-cyan-400 transition-colors">Varun Kollipara</a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
-                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            <a href="#" class="text-lg font-bold text-white hover:text-accent transition-colors flex items-center gap-2">
+                <span class="font-mono text-accent">&lt;/&gt;</span>
+                <span>Varun Kollipara</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="nav-link text-slate-300 hover:text-accent transition-colors">About</a>
+                <a href="#experience" class="nav-link text-slate-300 hover:text-accent transition-colors">Experience</a>
+                <a href="#projects" class="nav-link text-slate-300 hover:text-accent transition-colors">Projects</a>
+                <a href="#skills" class="nav-link text-slate-300 hover:text-accent transition-colors">Skills</a>
+                <a href="#contact" class="nav-link text-slate-300 hover:text-accent transition-colors">Contact</a>
+                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="ml-2 inline-flex items-center gap-2 border border-accent/60 text-accent px-4 py-2 rounded-full hover:bg-accent hover:text-ink-900 transition-all">
+                    <i class="fas fa-file-arrow-down text-xs"></i>
+                    Resume
+                </a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-2xl">
+            <button id="mobile-menu-button" class="md:hidden text-2xl text-white" aria-label="Open menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="#about" class="block hover:text-cyan-400 transition-colors">About</a>
-            <a href="#projects" class="block hover:text-cyan-400 transition-colors">Projects</a>
-            <a href="#skills" class="block hover:text-cyan-400 transition-colors">Skills</a>
-            <a href="#contact" class="block hover:text-cyan-400 transition-colors">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 border-t border-slate-800/60">
+            <a href="#about" class="block py-1 hover:text-accent transition-colors">About</a>
+            <a href="#experience" class="block py-1 hover:text-accent transition-colors">Experience</a>
+            <a href="#projects" class="block py-1 hover:text-accent transition-colors">Projects</a>
+            <a href="#skills" class="block py-1 hover:text-accent transition-colors">Skills</a>
+            <a href="#contact" class="block py-1 hover:text-accent transition-colors">Contact</a>
+            <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="block py-1 text-accent">
+                <i class="fas fa-file-arrow-down text-xs mr-1"></i> Download Resume
+            </a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 pt-24 md:pt-32">
+    <main class="container mx-auto px-6 pt-28 md:pt-32">
 
         <!-- Hero Section -->
-        <section id="hero" class="text-center py-20 section-fade-in">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
-                <span class="block">Hi, I'm Varun Kollipara</span>
-                <span class="text-cyan-400">A Passionate Developer & Student</span>
-            </h1>
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-                I'm a computer science student with a love for building innovative and efficient applications. Welcome to my personal portfolio.
-            </p>
-            <a href="#projects" class="bg-cyan-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105">
-                View My Work
-            </a>
+        <section id="hero" class="py-20 md:py-28 section-fade-in">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3 text-center md:text-left">
+                    <p class="text-accent font-mono text-sm mb-4 tracking-wide">Hi, my name is</p>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
+                        Varun Kollipara.
+                    </h1>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+                        <span class="accent-gradient">I build software people use.</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 max-w-2xl mb-8 mx-auto md:mx-0">
+                        I'm a Computer Science student at the <span class="text-slate-200 font-medium">University of Minnesota</span> and a software engineer with experience across iOS, full-stack web, and AI. Most recently I interned at <span class="text-slate-200 font-medium">Capgemini</span>, where I built a full-stack agentic AI system with LangChain, FastAPI, and React.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a href="#projects" class="bg-accent text-ink-900 font-semibold py-3 px-8 rounded-full hover:bg-accent-soft transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20">
+                            View My Work
+                        </a>
+                        <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-slate-600 text-slate-200 font-semibold py-3 px-8 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
+                            <i class="fas fa-file-arrow-down text-sm"></i>
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col-span-2 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-tr from-accent to-indigo-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity"></div>
+                        <img src="images/profile.jpg" alt="Portrait of Varun Kollipara" class="relative rounded-full shadow-2xl w-64 h-64 md:w-72 md:h-72 object-cover border-4 border-slate-800">
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- About Me Section -->
         <section id="about" class="py-20 section-fade-in">
-            <h2 class="text-4xl font-bold text-center mb-12 text-white">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/3">
-                    <!-- TODO: Replace "profile.jpg" with the actual name of your photo file -->
-                    <img src="profile.jpg" alt="Varun Kollipara" class="rounded-full shadow-lg w-64 h-64 mx-auto object-cover border-4 border-gray-700">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-sm font-mono text-accent mb-2 tracking-wide">01. About</h2>
+                <h3 class="text-4xl font-bold text-white mb-8">A bit about me</h3>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="md:col-span-2 space-y-4 text-slate-300">
+                        <p>
+                            I'm a senior at the <span class="text-white font-medium">University of Minnesota, Twin Cities</span>, finishing my B.S. in Computer Science (May 2026) with a 3.771 GPA in the College of Science &amp; Engineering. I'm an <span class="text-white font-medium">AWS Certified Cloud Practitioner</span>, and I've spent the last few years shipping real software — from production iOS apps with global users to client websites and internal AI tools.
+                        </p>
+                        <p>
+                            I love work that sits at the intersection of <span class="text-accent">good engineering</span> and <span class="text-accent">good product</span>. Recently that's looked like building an agentic AI system with LangChain at Capgemini, scaling a social iOS app to <span class="text-white">150+ users across 10+ countries</span>, and exploring Bayesian optimization for molecular structure research.
+                        </p>
+                        <p>
+                            I'm currently looking for <span class="text-white font-medium">new-grad software engineering roles</span> starting summer 2026.
+                        </p>
+                        <p class="text-slate-400 text-sm pt-2">
+                            Outside of code: golf, traveling, and the occasional Unity side project.
+                        </p>
+                    </div>
+                    <aside class="card rounded-xl p-6">
+                        <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                            <i class="fas fa-graduation-cap text-accent"></i> Education
+                        </h4>
+                        <p class="text-white font-medium">University of Minnesota</p>
+                        <p class="text-slate-400 text-sm">Twin Cities — College of Science &amp; Engineering</p>
+                        <p class="text-slate-300 text-sm mt-3">B.S., Computer Science</p>
+                        <p class="text-slate-400 text-sm">Expected May 2026 · GPA 3.771 / 4.00</p>
+                        <hr class="border-slate-700 my-4">
+                        <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
+                            <i class="fas fa-certificate text-accent"></i> Certifications
+                        </h4>
+                        <p class="text-slate-300 text-sm">AWS Certified Cloud Practitioner</p>
+                    </aside>
                 </div>
-                <div class="md:w-2/3">
-                    <p class="text-gray-300 mb-4">
-                        Hello! I'm a third-year (Junior) student at the University of Minnesota, Twin Cities, pursuing a degree in Computer Science. My journey into technology began with a fascination for how things work, which quickly evolved into a passion for coding and problem-solving.
-                    </p>
-                    <p class="text-gray-300 mb-4">
-                        I enjoy working on projects that challenge me and allow me to learn new technologies. My core interests lie in mobile app development and machine learning. I'm always eager to collaborate on exciting projects and contribute to meaningful solutions.
-                    </p>
-                    <p class="text-gray-300">
-                        Outside of coding, I enjoy golf and traveling.
-                    </p>
-                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-sm font-mono text-accent mb-2 tracking-wide">02. Experience</h2>
+                <h3 class="text-4xl font-bold text-white mb-12">Where I've worked</h3>
+
+                <ol class="relative border-l border-slate-700/60 ml-3 space-y-10">
+
+                    <!-- Capgemini -->
+                    <li class="pl-8">
+                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-accent timeline-dot"></span>
+                        <div class="card rounded-xl p-6">
+                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                                <h4 class="text-xl font-bold text-white">Software Engineer Intern · <span class="text-accent">Capgemini</span></h4>
+                                <span class="text-sm text-slate-400 font-mono">Jun 2025 — Jul 2025</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-3">Cincinnati, OH</p>
+                            <p class="text-slate-300">
+                                Built a full-stack agentic AI system using <span class="text-white">LangChain</span>, with a <span class="text-white">React</span> frontend and a <span class="text-white">FastAPI</span> backend. Shipped cross-platform mobile apps with <span class="text-white">React Native</span> and <span class="text-white">Flutter</span>, and built a 2D game and a 3D VR experience in <span class="text-white">Unity</span>. Worked across diverse stacks under tight deadlines to deliver polished, functional software.
+                            </p>
+                        </div>
+                    </li>
+
+                    <!-- PRSM -->
+                    <li class="pl-8">
+                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-accent timeline-dot"></span>
+                        <div class="card rounded-xl p-6">
+                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                                <h4 class="text-xl font-bold text-white">Full Stack Developer · <span class="text-accent">PRSM</span></h4>
+                                <span class="text-sm text-slate-400 font-mono">Jun 2023 — Aug 2024</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-3">Eden Prairie, MN</p>
+                            <p class="text-slate-300">
+                                Led a small team designing and developing dynamic websites in <span class="text-white">JavaScript</span> and <span class="text-white">Next.js</span>. Worked directly with clients to translate evolving requirements into shipped product, driving high client satisfaction across multiple successful launches.
+                            </p>
+                        </div>
+                    </li>
+
+                    <!-- Tech Academy -->
+                    <li class="pl-8">
+                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-slate-500"></span>
+                        <div class="card rounded-xl p-6">
+                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                                <h4 class="text-xl font-bold text-white">Assistant Teacher · <span class="text-accent">Tech Academy</span></h4>
+                                <span class="text-sm text-slate-400 font-mono">Jun 2021 — Aug 2022</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-3">Little Canada, MN</p>
+                            <p class="text-slate-300">
+                                Taught young learners coding fundamentals — primarily in Python — and stepped into a lead instructor role when needed, independently guiding classes and mentoring students.
+                            </p>
+                        </div>
+                    </li>
+
+                    <!-- Kumon -->
+                    <li class="pl-8">
+                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-slate-500"></span>
+                        <div class="card rounded-xl p-6">
+                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                                <h4 class="text-xl font-bold text-white">Teacher · <span class="text-accent">Kumon</span></h4>
+                                <span class="text-sm text-slate-400 font-mono">Aug 2019 — Aug 2023</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-3">Bloomington, MN</p>
+                            <p class="text-slate-300">
+                                Supported K–12 students with personalized math and reading instruction, grading assignments and giving constructive feedback to keep learners on track.
+                            </p>
+                        </div>
+                    </li>
+
+                </ol>
             </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects" class="py-20 section-fade-in">
-            <h2 class="text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
+            <h2 class="text-sm font-mono text-accent mb-2 tracking-wide text-center">03. Projects</h2>
+            <h3 class="text-4xl font-bold text-center mb-12 text-white">Things I've built</h3>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project Card 1 -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/1e293b/9ca3af?text=ClassRate" alt="ClassRate Project" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-white">ClassRate - iOS App</h3>
-                        <p class="text-gray-400 mb-4">Developed an iOS app that enables students to rate and review their classes. Built the UI with SwiftUI and used CloudKit for data storage.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <!-- Add technologies used as tags -->
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">SwiftUI</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">CloudKit</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">iOS</span>
+
+                <!-- BetterFriends -->
+                <article class="card rounded-xl overflow-hidden flex flex-col">
+                    <div class="h-44 bg-gradient-to-br from-pink-500/30 via-purple-500/20 to-accent/20 flex items-center justify-center relative">
+                        <i class="fas fa-user-group text-6xl text-white/80"></i>
+                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Live · App Store</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-2xl font-bold text-white">BetterFriends</h4>
+                            <i class="fab fa-apple text-slate-500 text-xl"></i>
+                        </div>
+                        <p class="text-slate-400 mb-4 flex-grow">
+                            A social iOS app I developed and scaled to <span class="text-white">100+ monthly active users across 10+ countries</span>. Built on a Supabase + PostgreSQL backend to manage global user data and interactions with high availability and performance.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">SwiftUI</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Supabase</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">PostgreSQL</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">iOS</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project Card 2 -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/1e293b/9ca3af?text=Setrix" alt="Setrix Project" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-white">Setrix - iOS App</h3>
-                        <p class="text-gray-400 mb-4">A workout tracking iOS app allowing users to log sets, track progress with interactive charts, and view activity on a calendar.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">SwiftUI</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">Swift Charts</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">CloudKit</span>
+                <!-- ClassRate -->
+                <article class="card rounded-xl overflow-hidden flex flex-col">
+                    <div class="h-44 bg-gradient-to-br from-accent/30 via-cyan-500/20 to-blue-500/20 flex items-center justify-center relative">
+                        <i class="fas fa-star-half-stroke text-6xl text-white/80"></i>
+                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Live · App Store</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-2xl font-bold text-white">ClassRate</h4>
+                            <i class="fab fa-apple text-slate-500 text-xl"></i>
+                        </div>
+                        <p class="text-slate-400 mb-4 flex-grow">
+                            An iOS app that lets students rate and review their classes. Architected the platform from initial development through App Store launch, leveraging CloudKit for data sync and iterating on features based on user metrics and review feedback.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">SwiftUI</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">CloudKit</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">iOS</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project Card 3 -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/1e293b/9ca3af?text=ML+Research" alt="Machine Learning Research" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-white">Machine Learning Research</h3>
-                        <p class="text-gray-400 mb-4">Conducted research on ML and Bayesian optimization, focusing on theoretical foundations and practical applications like molecular structure optimization.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">Machine Learning</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1 rounded-full">Bayesian Opt.</span>
+                <!-- Setrix -->
+                <article class="card rounded-xl overflow-hidden flex flex-col">
+                    <div class="h-44 bg-gradient-to-br from-emerald-500/30 via-teal-500/20 to-accent/20 flex items-center justify-center relative">
+                        <i class="fas fa-dumbbell text-6xl text-white/80"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-2xl font-bold text-white">Setrix</h4>
+                            <i class="fab fa-apple text-slate-500 text-xl"></i>
+                        </div>
+                        <p class="text-slate-400 mb-4 flex-grow">
+                            A workout tracker for iOS featuring set logging, calendar-based history, and interactive progress visualizations powered by Swift Charts. Uses CloudKit to keep data in sync across devices.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">SwiftUI</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Swift Charts</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">CloudKit</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                 <!-- You can copy and paste a project card block to add more projects -->
+                <!-- ML Research -->
+                <article class="card rounded-xl overflow-hidden flex flex-col">
+                    <div class="h-44 bg-gradient-to-br from-indigo-500/30 via-purple-500/20 to-fuchsia-500/20 flex items-center justify-center relative">
+                        <i class="fas fa-brain text-6xl text-white/80"></i>
+                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Research</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-2xl font-bold text-white">ML &amp; Bayesian Optimization</h4>
+                            <span class="text-xs text-slate-500 font-mono">2024</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 flex-grow">
+                            Research at the University of Minnesota on machine learning and Bayesian optimization, exploring theoretical foundations and applications to problems like molecular structure optimization and complex system tuning.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Machine Learning</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Bayesian Opt.</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Agentic AI (Capgemini) -->
+                <article class="card rounded-xl overflow-hidden flex flex-col">
+                    <div class="h-44 bg-gradient-to-br from-amber-500/30 via-orange-500/20 to-rose-500/20 flex items-center justify-center relative">
+                        <i class="fas fa-robot text-6xl text-white/80"></i>
+                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Internship</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-2xl font-bold text-white">Agentic AI System</h4>
+                            <span class="text-xs text-slate-500 font-mono">Capgemini</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 flex-grow">
+                            A full-stack agentic AI system built during my internship at Capgemini. React frontend, FastAPI backend, and a LangChain orchestration layer driving multi-step reasoning for internal tooling.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">LangChain</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">FastAPI</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">React</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Unity Games -->
+                <article class="card rounded-xl overflow-hidden flex flex-col">
+                    <div class="h-44 bg-gradient-to-br from-violet-500/30 via-blue-500/20 to-accent/20 flex items-center justify-center relative">
+                        <i class="fas fa-gamepad text-6xl text-white/80"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-2xl font-bold text-white">Unity Games &amp; VR</h4>
+                            <span class="text-xs text-slate-500 font-mono">Capgemini</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 flex-grow">
+                            Designed and built a 2D Unity game and a 3D VR experience as part of an internship rotation, picking up new tooling, scripting in C#, and shipping playable demos within tight timelines.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Unity</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">C#</span>
+                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">VR</span>
+                        </div>
+                    </div>
+                </article>
 
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills" class="py-20 section-fade-in">
-            <h2 class="text-4xl font-bold text-center mb-12 text-white">Technical Skills</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
-                    
-                    <!-- Skill Item -->
-                    <div class="flex flex-col items-center">
-                        <i class="fab fa-python text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">Python</span>
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-sm font-mono text-accent mb-2 tracking-wide text-center">04. Skills</h2>
+                <h3 class="text-4xl font-bold text-center mb-12 text-white">Technical toolkit</h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-swift text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">Swift / SwiftUI</span>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <i class="fab fa-java text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">Java</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-python text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">Python</span>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <i class="fab fa-js-square text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">JavaScript</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-java text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">Java</span>
                     </div>
-                     <div class="flex flex-col items-center">
-                        <i class="fab fa-react text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">React</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-js-square text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">JavaScript</span>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <i class="fab fa-swift text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">Swift</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-react text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">React / Next.js</span>
                     </div>
-                     <div class="flex flex-col items-center">
-                        <i class="fas fa-laptop-code text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">C#</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fas fa-hashtag text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">C#</span>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <i class="fab fa-node-js text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">Next.js</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fas fa-database text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">SQL / PostgreSQL</span>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <i class="fas fa-database text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">SQL</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-aws text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">AWS</span>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <i class="fab fa-git-alt text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">Git</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fab fa-git-alt text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">Git</span>
                     </div>
-                     <div class="flex flex-col items-center">
-                        <i class="fab fa-aws text-5xl text-cyan-400 mb-2"></i>
-                        <span class="text-gray-300">AWS</span>
+                    <div class="card rounded-xl py-6 flex flex-col items-center">
+                        <i class="fas fa-cube text-4xl text-accent mb-2"></i>
+                        <span class="text-slate-300 text-sm">Unity</span>
                     </div>
-                    
+
+                </div>
+
+                <div class="mt-10 text-center">
+                    <p class="text-slate-400 text-sm">
+                        <span class="text-slate-200 font-medium">Also:</span>
+                        LangChain · FastAPI · React Native · Flutter · Swift Charts · CloudKit · Supabase · Excel · CAD
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 text-center section-fade-in">
-            <h2 class="text-4xl font-bold mb-4 text-white">Get In Touch</h2>
-            <p class="text-gray-400 max-w-xl mx-auto mb-8">
-                I'm currently looking for internship opportunities and am open to collaboration. Feel free to reach out!
+        <section id="contact" class="py-24 text-center section-fade-in">
+            <h2 class="text-sm font-mono text-accent mb-2 tracking-wide">05. Contact</h2>
+            <h3 class="text-4xl md:text-5xl font-bold mb-4 text-white">Let's get in touch</h3>
+            <p class="text-slate-400 max-w-xl mx-auto mb-10">
+                I'm currently looking for new-grad software engineering roles and open to interesting collaborations. The fastest way to reach me is email — I'll respond within a day or two.
             </p>
-            <div class="flex justify-center space-x-6 text-4xl">
-                <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:varunkollipara11@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:varunkollipara11@gmail.com" class="inline-flex items-center gap-2 bg-accent text-ink-900 font-semibold py-3 px-8 rounded-full hover:bg-accent-soft transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20 mb-10">
+                <i class="fas fa-envelope"></i>
+                Say Hello
+            </a>
+            <div class="flex justify-center items-center gap-8 text-2xl">
+                <a href="https://github.com/VarunKollipara" target="_blank" rel="noopener" aria-label="GitHub" class="text-slate-400 hover:text-accent transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/varun-kollipara-509968240/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-400 hover:text-accent transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:varunkollipara11@gmail.com" aria-label="Email" class="text-slate-400 hover:text-accent transition-colors">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume" class="text-slate-400 hover:text-accent transition-colors">
+                    <i class="fas fa-file-arrow-down"></i>
+                </a>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2024 Varun Kollipara. All Rights Reserved.</p>
+    <footer class="border-t border-slate-800/60 mt-10">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500 text-sm">
+            <p>Designed &amp; built by Varun Kollipara · &copy; 2026</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when a link is clicked
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
 
-        // Section fade-in animation
         const sections = document.querySelectorAll('.section-fade-in');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -248,7 +570,3 @@
     </script>
 </body>
 </html>
-
-
-
-
