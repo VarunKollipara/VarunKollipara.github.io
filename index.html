@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,285 +15,866 @@
 
     <link rel="icon" type="image/jpeg" href="images/profile.jpg">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        accent: {
-                            DEFAULT: '#22d3ee',
-                            soft: '#67e8f9',
-                            deep: '#0891b2',
-                        },
-                        ink: {
-                            900: '#0b1120',
-                            800: '#0f172a',
-                            700: '#1e293b',
-                            600: '#334155',
-                        },
-                    },
-                },
-            },
-        };
-    </script>
+    <script>document.documentElement.classList.add('js');</script>
 
     <style>
+        :root {
+            --bg: #0e0e0c;
+            --surface: #161614;
+            --surface-2: #1c1c19;
+            --ink: #ecebe6;
+            --muted: #8a897f;
+            --faint: #56554d;
+            --accent: #c8f135;
+            --accent-dim: rgba(200, 241, 53, 0.12);
+            --line: rgba(236, 235, 230, 0.1);
+            --grid: rgba(236, 235, 230, 0.032);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0b1120;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Blueprint grid backdrop */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
             background-image:
-                radial-gradient(at 20% 0%, rgba(34, 211, 238, 0.08) 0px, transparent 50%),
-                radial-gradient(at 80% 100%, rgba(34, 211, 238, 0.06) 0px, transparent 50%);
-            background-attachment: fixed;
+                linear-gradient(to right, var(--grid) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+            background-size: 72px 72px;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .section-fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .section-fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        a { color: inherit; text-decoration: none; }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 2px;
         }
 
-        .accent-gradient {
-            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .card {
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.7) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            backdrop-filter: blur(8px);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(34, 211, 238, 0.4);
-            box-shadow: 0 20px 40px -20px rgba(34, 211, 238, 0.25);
-        }
-
-        .chip {
-            background: rgba(34, 211, 238, 0.08);
-            color: #67e8f9;
-            border: 1px solid rgba(34, 211, 238, 0.2);
-        }
-
-        .timeline-dot {
-            box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15);
-        }
-
-        a.nav-link {
+        .wrap {
             position: relative;
+            z-index: 1;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
-        a.nav-link::after {
+
+        .mono {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 50;
+            background: rgba(14, 14, 12, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .logo b { color: var(--accent); font-weight: 500; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--muted);
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.25s ease;
+        }
+        .nav-links a::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background-color: #22d3ee;
-            transition: width 0.3s ease;
-        }
-        a.nav-link:hover::after {
+            left: 0; bottom: 0;
             width: 100%;
+            height: 1px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--ink); }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
-        ::selection {
-            background-color: rgba(34, 211, 238, 0.3);
-            color: white;
+        .resume-btn {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent) !important;
+            border: 1px solid rgba(200, 241, 53, 0.35);
+            padding: 8px 16px !important;
+            transition: background 0.25s ease, color 0.25s ease !important;
+        }
+        .resume-btn::after { display: none; }
+        .resume-btn:hover {
+            background: var(--accent);
+            color: var(--bg) !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--ink);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            border-top: 1px solid var(--line);
+            padding: 12px 24px 20px;
+        }
+        .mobile-menu.open { display: block; }
+        .mobile-menu a {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--muted);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(236, 235, 230, 0.05);
+        }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--accent); }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 96px;
+            padding-bottom: 64px;
+        }
+
+        .hero-kicker {
+            color: var(--accent);
+            margin-bottom: 28px;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(3.2rem, 11vw, 8rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+        .hero-name .outline {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--ink);
+        }
+
+        .hero-tagline {
+            margin-top: 32px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: clamp(1.25rem, 3vw, 1.9rem);
+            color: var(--ink);
+        }
+        .hero-tagline .caret {
+            display: inline-block;
+            width: 0.55em;
+            height: 1.05em;
+            background: var(--accent);
+            vertical-align: text-bottom;
+            margin-left: 6px;
+            animation: blink 1.1s steps(1) infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-sub {
+            margin-top: 20px;
+            max-width: 560px;
+            color: var(--muted);
+        }
+        .hero-sub strong { color: var(--ink); font-weight: 500; }
+
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 32px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            padding: 8px 16px;
+            color: var(--muted);
+        }
+        .hero-status .dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 241, 53, 0.45); }
+            50% { box-shadow: 0 0 0 6px rgba(200, 241, 53, 0); }
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            padding: 13px 28px;
+            border: 1px solid var(--line);
+            color: var(--ink);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+        .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+        .btn-primary:hover { background: #d9fb5c; color: var(--bg); }
+        .btn svg { width: 14px; height: 14px; }
+
+        .hero-scroll {
+            margin-top: auto;
+            padding-top: 48px;
+            color: var(--faint);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .hero-scroll .tick {
+            display: inline-block;
+            width: 48px;
+            height: 1px;
+            background: var(--faint);
+        }
+
+        /* ---------- Sections ---------- */
+        section { padding: 96px 0; }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 56px;
+        }
+        .section-head .num {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .section-head h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .section-head .rule {
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+            transform: translateY(-6px);
+        }
+
+        /* Corner-tick card */
+        .tick-card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .tick-card::before,
+        .tick-card::after {
+            content: '';
+            position: absolute;
+            width: 14px; height: 14px;
+            border: 0 solid var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .tick-card::before {
+            top: -1px; left: -1px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+        .tick-card::after {
+            bottom: -1px; right: -1px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+        .tick-card:hover { border-color: rgba(236, 235, 230, 0.22); transform: translateY(-3px); }
+        .tick-card:hover::before,
+        .tick-card:hover::after { opacity: 1; }
+
+        /* ---------- About ---------- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-text p { color: var(--muted); margin-bottom: 18px; }
+        .about-text strong { color: var(--ink); font-weight: 500; }
+        .about-text .hl { color: var(--accent); }
+
+        .about-side { display: flex; flex-direction: column; gap: 24px; }
+
+        .portrait {
+            position: relative;
+            align-self: center;
+        }
+        .portrait img {
+            display: block;
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            filter: grayscale(60%) contrast(1.05);
+            transition: filter 0.4s ease;
+        }
+        .portrait:hover img { filter: grayscale(0%); }
+        .portrait::before,
+        .portrait::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            border: 0 solid var(--accent);
+        }
+        .portrait::before { top: -8px; left: -8px; border-top-width: 2px; border-left-width: 2px; }
+        .portrait::after { bottom: -8px; right: -8px; border-bottom-width: 2px; border-right-width: 2px; }
+
+        .edu-card { padding: 24px; }
+        .edu-card .label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+        .edu-card p { font-size: 0.92rem; color: var(--muted); }
+        .edu-card p strong { color: var(--ink); font-weight: 500; }
+        .edu-card hr { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
+
+        /* ---------- Experience ---------- */
+        .timeline {
+            list-style: none;
+            position: relative;
+            padding-left: 36px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 6px; bottom: 6px; left: 6px;
+            width: 1px;
+            background: var(--line);
+        }
+
+        .timeline li { position: relative; padding-bottom: 48px; }
+        .timeline li:last-child { padding-bottom: 0; }
+
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 8px;
+            width: 9px; height: 9px;
+            background: var(--bg);
+            border: 2px solid var(--faint);
+            transform: rotate(45deg);
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .timeline li.current::before { border-color: var(--accent); }
+        .timeline li:hover::before { background: var(--accent); border-color: var(--accent); }
+
+        .xp-card { padding: 28px; }
+
+        .xp-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .xp-head h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+        .xp-head h3 span { color: var(--accent); }
+        .xp-date { color: var(--muted); white-space: nowrap; }
+        .xp-loc { color: var(--faint); margin-bottom: 16px; }
+
+        .xp-card ul { list-style: none; }
+        .xp-card ul li {
+            position: relative;
+            padding: 0 0 8px 22px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+        .xp-card ul li::before {
+            content: '»';
+            position: absolute;
+            left: 0;
+            top: -1px;
+            color: var(--accent);
+            font-family: var(--font-mono);
+            border: none;
+            background: none;
+            width: auto; height: auto;
+            transform: none;
+        }
+        .xp-card ul li strong { color: var(--ink); font-weight: 500; }
+
+        /* ---------- Projects ---------- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+        .project-index {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--faint);
+        }
+        .project-badge {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(200, 241, 53, 0.25);
+            padding: 3px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .project-badge.alt {
+            color: var(--muted);
+            background: transparent;
+            border-color: var(--line);
+        }
+
+        .project-card h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.35rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 10px;
+            transition: color 0.25s ease;
+        }
+        .project-card:hover h3 { color: var(--accent); }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+        .project-card p strong { color: var(--ink); font-weight: 500; }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tags span {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            padding: 3px 10px;
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+        .project-card:hover .tags span { border-color: rgba(236, 235, 230, 0.2); }
+
+        /* ---------- Toolkit ---------- */
+        .toolkit {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .toolkit span {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            background: var(--surface);
+            padding: 9px 18px;
+            transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+        }
+        .toolkit span:hover {
+            color: var(--accent);
+            border-color: rgba(200, 241, 53, 0.4);
+            transform: translateY(-2px);
+        }
+        .toolkit-also {
+            margin-top: 24px;
+            color: var(--faint);
+        }
+        .toolkit-also b { color: var(--muted); font-weight: 500; }
+
+        /* ---------- Interests ---------- */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .interest-card {
+            padding: 28px;
+            text-align: left;
+        }
+        .interest-card svg {
+            width: 26px; height: 26px;
+            stroke: var(--accent);
+            margin-bottom: 16px;
+        }
+        .interest-card h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+        .interest-card p { color: var(--muted); font-size: 0.9rem; }
+
+        /* ---------- Contact ---------- */
+        .contact { text-align: center; padding-bottom: 64px; }
+        .contact .mono { color: var(--accent); }
+        .contact h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2.2rem, 6vw, 3.6rem);
+            letter-spacing: -0.02em;
+            margin: 16px 0 18px;
+        }
+        .contact > .wrap > p {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 40px;
+        }
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            padding: 11px 20px;
+            transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+        }
+        .contact-links a:hover {
+            color: var(--accent);
+            border-color: rgba(200, 241, 53, 0.4);
+            transform: translateY(-2px);
+        }
+        .contact-links svg { width: 16px; height: 16px; }
+
+        /* ---------- Footer ---------- */
+        footer {
+            border-top: 1px solid var(--line);
+            position: relative;
+            z-index: 1;
+        }
+        footer .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 28px;
+            padding-bottom: 28px;
+            color: var(--faint);
+        }
+
+        /* ---------- Reveal on scroll (only hidden when JS is available) ---------- */
+        html.js .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: var(--d, 0s);
+        }
+        html.js .reveal.in { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+            html.js .reveal { opacity: 1; transform: none; }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-side {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: flex-start;
+            }
+            .edu-card { flex: 1; min-width: 260px; }
+        }
+
+        @media (max-width: 640px) {
+            section { padding: 72px 0; }
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .projects-grid, .interests-grid { grid-template-columns: 1fr; }
+            .xp-head { flex-direction: column; gap: 2px; }
+            .timeline { padding-left: 28px; }
+            .timeline li::before { left: -26px; }
+            .hero { padding-top: 80px; }
         }
     </style>
 </head>
-<body class="text-slate-300 leading-relaxed antialiased">
+<body>
 
     <!-- Header -->
-    <header class="bg-ink-900/80 backdrop-blur-md fixed top-0 left-0 right-0 z-20 border-b border-slate-800/60">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-lg font-bold text-white hover:text-accent transition-colors flex items-center gap-2">
-                <span class="font-mono text-accent">&lt;/&gt;</span>
-                <span>Varun Kollipara</span>
-            </a>
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="#about" class="nav-link text-slate-300 hover:text-accent transition-colors">About</a>
-                <a href="#experience" class="nav-link text-slate-300 hover:text-accent transition-colors">Experience</a>
-                <a href="#projects" class="nav-link text-slate-300 hover:text-accent transition-colors">Projects</a>
-                <a href="#skills" class="nav-link text-slate-300 hover:text-accent transition-colors">Skills</a>
-                <a href="#contact" class="nav-link text-slate-300 hover:text-accent transition-colors">Contact</a>
-                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="ml-2 inline-flex items-center gap-2 border border-accent/60 text-accent px-4 py-2 rounded-full hover:bg-accent hover:text-ink-900 transition-all">
-                    <i class="fas fa-file-arrow-down text-xs"></i>
-                    Resume
-                </a>
+    <header>
+        <div class="wrap nav-bar">
+            <a href="#" class="logo"><b>vk</b>@portfolio:~$</a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#about">/about</a>
+                <a href="#experience">/experience</a>
+                <a href="#projects">/projects</a>
+                <a href="#interests">/interests</a>
+                <a href="#contact">/contact</a>
+                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="resume-btn">resume.pdf ↓</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-2xl text-white" aria-label="Open menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">menu</button>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 border-t border-slate-800/60">
-            <a href="#about" class="block py-1 hover:text-accent transition-colors">About</a>
-            <a href="#experience" class="block py-1 hover:text-accent transition-colors">Experience</a>
-            <a href="#projects" class="block py-1 hover:text-accent transition-colors">Projects</a>
-            <a href="#skills" class="block py-1 hover:text-accent transition-colors">Skills</a>
-            <a href="#contact" class="block py-1 hover:text-accent transition-colors">Contact</a>
-            <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="block py-1 text-accent">
-                <i class="fas fa-file-arrow-down text-xs mr-1"></i> Download Resume
-            </a>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#about">/about</a>
+            <a href="#experience">/experience</a>
+            <a href="#projects">/projects</a>
+            <a href="#interests">/interests</a>
+            <a href="#contact">/contact</a>
+            <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener">resume.pdf ↓</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 pt-28 md:pt-32">
+    <main>
 
-        <!-- Hero Section -->
-        <section id="hero" class="py-20 md:py-28 section-fade-in">
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3 text-center md:text-left">
-                    <p class="text-accent font-mono text-sm mb-4 tracking-wide">Hi, my name is</p>
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
-                        Varun Kollipara.
-                    </h1>
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-                        <span class="accent-gradient">I build software people use.</span>
-                    </h2>
-                    <p class="text-lg text-slate-400 max-w-2xl mb-8 mx-auto md:mx-0">
-                        I'm a Computer Science student at the <span class="text-slate-200 font-medium">University of Minnesota</span> and a software engineer with experience across iOS, full-stack web, and AI. Most recently I interned at <span class="text-slate-200 font-medium">Capgemini</span>, where I built a full-stack agentic AI system with LangChain, FastAPI, and React.
-                    </p>
-                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <a href="#projects" class="bg-accent text-ink-900 font-semibold py-3 px-8 rounded-full hover:bg-accent-soft transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20">
-                            View My Work
-                        </a>
-                        <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-slate-600 text-slate-200 font-semibold py-3 px-8 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
-                            <i class="fas fa-file-arrow-down text-sm"></i>
-                            Download Resume
-                        </a>
-                    </div>
+        <!-- Hero -->
+        <section class="hero wrap" id="top">
+            <p class="mono hero-kicker reveal">// software engineer — minneapolis, mn</p>
+            <h1 class="hero-name reveal" style="--d: 0.08s">
+                Varun
+                <span class="outline">Kollipara</span>
+            </h1>
+            <p class="hero-tagline reveal" style="--d: 0.16s">I build software people use.<span class="caret" aria-hidden="true"></span></p>
+            <p class="hero-sub reveal" style="--d: 0.24s">
+                Computer Science student at the <strong>University of Minnesota</strong> with experience across iOS, full-stack web, and AI.
+                Most recently I interned at <strong>Capgemini</strong>, building a full-stack agentic AI system with LangChain, FastAPI, and React.
+            </p>
+            <div class="reveal" style="--d: 0.32s">
+                <span class="hero-status mono"><span class="dot"></span>open to new-grad SWE roles · summer 2026</span>
+            </div>
+            <div class="hero-actions reveal" style="--d: 0.4s">
+                <a href="#projects" class="btn btn-primary">view my work</a>
+                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="btn">
+                    download resume
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+            </div>
+            <p class="mono hero-scroll reveal" style="--d: 0.48s"><span class="tick"></span>scroll to explore</p>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="num">01</span>
+                    <h2>About</h2>
+                    <span class="rule"></span>
                 </div>
-                <div class="md:col-span-2 flex justify-center">
-                    <div class="relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-tr from-accent to-indigo-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity"></div>
-                        <img src="images/profile.jpg" alt="Portrait of Varun Kollipara" class="relative rounded-full shadow-2xl w-64 h-64 md:w-72 md:h-72 object-cover border-4 border-slate-800">
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <p>
+                            I'm a senior at the <strong>University of Minnesota, Twin Cities</strong>, finishing my B.S. in Computer Science
+                            (May 2026) with a 3.771 GPA in the College of Science &amp; Engineering. I'm an
+                            <strong>AWS Certified Cloud Practitioner</strong>, and I've spent the last few years shipping real software,
+                            from production iOS apps with global users to client websites and internal AI tools.
+                        </p>
+                        <p>
+                            I love work that sits at the intersection of <span class="hl">good engineering</span> and
+                            <span class="hl">good product</span>. Recently that's looked like building an agentic AI system with LangChain
+                            at Capgemini, scaling a social iOS app to <strong>150+ users across 10+ countries</strong>, and exploring
+                            Bayesian optimization for molecular structure research.
+                        </p>
+                        <p>
+                            I'm currently looking for <strong>new-grad software engineering roles</strong> starting summer 2026.
+                        </p>
+                    </div>
+                    <div class="about-side reveal" style="--d: 0.12s">
+                        <div class="portrait">
+                            <img src="images/profile.jpg" alt="Portrait of Varun Kollipara" width="220" height="220" loading="lazy">
+                        </div>
+                        <div class="tick-card edu-card">
+                            <p class="label">Education</p>
+                            <p><strong>University of Minnesota</strong></p>
+                            <p>Twin Cities — College of Science &amp; Engineering</p>
+                            <p style="margin-top: 10px;">B.S., Computer Science</p>
+                            <p>Expected May 2026 · GPA 3.771 / 4.00</p>
+                            <hr>
+                            <p class="label">Certification</p>
+                            <p><strong>AWS Certified Cloud Practitioner</strong></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Me Section -->
-        <section id="about" class="py-20 section-fade-in">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-sm font-mono text-accent mb-2 tracking-wide">01. About</h2>
-                <h3 class="text-4xl font-bold text-white mb-8">A bit about me</h3>
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div class="md:col-span-2 space-y-4 text-slate-300">
-                        <p>
-                            I'm a senior at the <span class="text-white font-medium">University of Minnesota, Twin Cities</span>, finishing my B.S. in Computer Science (May 2026) with a 3.771 GPA in the College of Science &amp; Engineering. I'm an <span class="text-white font-medium">AWS Certified Cloud Practitioner</span>, and I've spent the last few years shipping real software, from production iOS apps with global users to client websites and internal AI tools.
-                        </p>
-                        <p>
-                            I love work that sits at the intersection of <span class="text-accent">good engineering</span> and <span class="text-accent">good product</span>. Recently that's looked like building an agentic AI system with LangChain at Capgemini, scaling a social iOS app to <span class="text-white">150+ users across 10+ countries</span>, and exploring Bayesian optimization for molecular structure research.
-                        </p>
-                        <p>
-                            I'm currently looking for <span class="text-white font-medium">new-grad software engineering roles</span> starting summer 2026.
-                        </p>
-                        <p class="text-slate-400 text-sm pt-2">
-                            Outside of code: golf, traveling, and the occasional Unity side project.
-                        </p>
-                    </div>
-                    <aside class="card rounded-xl p-6">
-                        <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
-                            <i class="fas fa-graduation-cap text-accent"></i> Education
-                        </h4>
-                        <p class="text-white font-medium">University of Minnesota</p>
-                        <p class="text-slate-400 text-sm">Twin Cities — College of Science &amp; Engineering</p>
-                        <p class="text-slate-300 text-sm mt-3">B.S., Computer Science</p>
-                        <p class="text-slate-400 text-sm">Expected May 2026 · GPA 3.771 / 4.00</p>
-                        <hr class="border-slate-700 my-4">
-                        <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
-                            <i class="fas fa-certificate text-accent"></i> Certifications
-                        </h4>
-                        <p class="text-slate-300 text-sm">AWS Certified Cloud Practitioner</p>
-                    </aside>
+        <!-- Experience -->
+        <section id="experience">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="num">02</span>
+                    <h2>Experience</h2>
+                    <span class="rule"></span>
                 </div>
-            </div>
-        </section>
+                <ol class="timeline">
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-20 section-fade-in">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-sm font-mono text-accent mb-2 tracking-wide">02. Experience</h2>
-                <h3 class="text-4xl font-bold text-white mb-12">Where I've worked</h3>
-
-                <ol class="relative border-l border-slate-700/60 ml-3 space-y-10">
-
-                    <!-- Capgemini -->
-                    <li class="pl-8">
-                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-accent timeline-dot"></span>
-                        <div class="card rounded-xl p-6">
-                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                                <h4 class="text-xl font-bold text-white">Software Engineer Intern · <span class="text-accent">Capgemini</span></h4>
-                                <span class="text-sm text-slate-400 font-mono">Jun 2025 — Jul 2025</span>
+                    <li class="current reveal">
+                        <div class="tick-card xp-card">
+                            <div class="xp-head">
+                                <h3>Software Engineer Intern · <span>Capgemini</span></h3>
+                                <span class="mono xp-date">Jun 2025 — Jul 2025</span>
                             </div>
-                            <p class="text-sm text-slate-500 mb-3">Cincinnati, OH</p>
-                            <p class="text-slate-300">
-                                Built a full-stack agentic AI system using <span class="text-white">LangChain</span>, with a <span class="text-white">React</span> frontend and a <span class="text-white">FastAPI</span> backend. Shipped cross-platform mobile apps with <span class="text-white">React Native</span> and <span class="text-white">Flutter</span>, and built a 2D game and a 3D VR experience in <span class="text-white">Unity</span>. Worked across diverse stacks under tight deadlines to deliver polished, functional software.
-                            </p>
+                            <p class="mono xp-loc">Cincinnati, OH</p>
+                            <ul>
+                                <li>Built a full-stack agentic AI system using <strong>LangChain</strong>, with a <strong>React</strong> frontend and a <strong>FastAPI</strong> backend.</li>
+                                <li>Shipped cross-platform mobile apps with <strong>React Native</strong> and <strong>Flutter</strong>.</li>
+                                <li>Built a 2D game and a 3D VR experience in <strong>Unity</strong>.</li>
+                                <li>Worked across diverse stacks under tight deadlines to deliver polished, functional software.</li>
+                            </ul>
                         </div>
                     </li>
 
-                    <!-- PRSM -->
-                    <li class="pl-8">
-                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-accent timeline-dot"></span>
-                        <div class="card rounded-xl p-6">
-                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                                <h4 class="text-xl font-bold text-white">Full Stack Developer · <span class="text-accent">PRSM</span></h4>
-                                <span class="text-sm text-slate-400 font-mono">Jun 2023 — Aug 2024</span>
+                    <li class="current reveal">
+                        <div class="tick-card xp-card">
+                            <div class="xp-head">
+                                <h3>Full Stack Developer · <span>PRSM</span></h3>
+                                <span class="mono xp-date">Jun 2023 — Aug 2024</span>
                             </div>
-                            <p class="text-sm text-slate-500 mb-3">Eden Prairie, MN</p>
-                            <p class="text-slate-300">
-                                Led a small team designing and developing dynamic websites in <span class="text-white">JavaScript</span> and <span class="text-white">Next.js</span>. Worked directly with clients to translate evolving requirements into shipped product, driving high client satisfaction across multiple successful launches.
-                            </p>
+                            <p class="mono xp-loc">Eden Prairie, MN</p>
+                            <ul>
+                                <li>Led a small team designing and developing dynamic websites in <strong>JavaScript</strong> and <strong>Next.js</strong>.</li>
+                                <li>Worked directly with clients to translate evolving requirements into shipped product.</li>
+                                <li>Drove high client satisfaction across multiple successful launches.</li>
+                            </ul>
                         </div>
                     </li>
 
-                    <!-- Tech Academy -->
-                    <li class="pl-8">
-                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-slate-500"></span>
-                        <div class="card rounded-xl p-6">
-                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                                <h4 class="text-xl font-bold text-white">Assistant Teacher · <span class="text-accent">Tech Academy</span></h4>
-                                <span class="text-sm text-slate-400 font-mono">Jun 2021 — Aug 2022</span>
+                    <li class="reveal">
+                        <div class="tick-card xp-card">
+                            <div class="xp-head">
+                                <h3>Assistant Teacher · <span>Tech Academy</span></h3>
+                                <span class="mono xp-date">Jun 2021 — Aug 2022</span>
                             </div>
-                            <p class="text-sm text-slate-500 mb-3">Little Canada, MN</p>
-                            <p class="text-slate-300">
-                                Taught young learners coding fundamentals, primarily in Python, and stepped into a lead instructor role when needed, independently guiding classes and mentoring students.
-                            </p>
+                            <p class="mono xp-loc">Little Canada, MN</p>
+                            <ul>
+                                <li>Taught young learners coding fundamentals, primarily in <strong>Python</strong>.</li>
+                                <li>Stepped into a lead instructor role when needed, independently guiding classes and mentoring students.</li>
+                            </ul>
                         </div>
                     </li>
 
-                    <!-- Kumon -->
-                    <li class="pl-8">
-                        <span class="absolute -left-2.5 mt-2 w-5 h-5 rounded-full bg-slate-500"></span>
-                        <div class="card rounded-xl p-6">
-                            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                                <h4 class="text-xl font-bold text-white">Teacher · <span class="text-accent">Kumon</span></h4>
-                                <span class="text-sm text-slate-400 font-mono">Aug 2019 — Aug 2023</span>
+                    <li class="reveal">
+                        <div class="tick-card xp-card">
+                            <div class="xp-head">
+                                <h3>Teacher · <span>Kumon</span></h3>
+                                <span class="mono xp-date">Aug 2019 — Aug 2023</span>
                             </div>
-                            <p class="text-sm text-slate-500 mb-3">Bloomington, MN</p>
-                            <p class="text-slate-300">
-                                Supported K–12 students with personalized math and reading instruction, grading assignments and giving constructive feedback to keep learners on track.
-                            </p>
+                            <p class="mono xp-loc">Bloomington, MN</p>
+                            <ul>
+                                <li>Supported K–12 students with personalized math and reading instruction.</li>
+                                <li>Graded assignments and gave constructive feedback to keep learners on track.</li>
+                            </ul>
                         </div>
                     </li>
 
@@ -301,272 +882,251 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 section-fade-in">
-            <h2 class="text-sm font-mono text-accent mb-2 tracking-wide text-center">03. Projects</h2>
-            <h3 class="text-4xl font-bold text-center mb-12 text-white">Things I've built</h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- BetterFriends -->
-                <article class="card rounded-xl overflow-hidden flex flex-col">
-                    <div class="h-44 bg-gradient-to-br from-pink-500/30 via-purple-500/20 to-accent/20 flex items-center justify-center relative">
-                        <i class="fas fa-user-group text-6xl text-white/80"></i>
-                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Live · App Store</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-2xl font-bold text-white">BetterFriends</h4>
-                            <i class="fab fa-apple text-slate-500 text-xl"></i>
-                        </div>
-                        <p class="text-slate-400 mb-4 flex-grow">
-                            A social iOS app I developed and scaled to <span class="text-white">100+ monthly active users across 10+ countries</span>. Built on a Supabase + PostgreSQL backend to manage global user data and interactions with high availability and performance.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">SwiftUI</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Supabase</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">PostgreSQL</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">iOS</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- ClassRate -->
-                <article class="card rounded-xl overflow-hidden flex flex-col">
-                    <div class="h-44 bg-gradient-to-br from-accent/30 via-cyan-500/20 to-blue-500/20 flex items-center justify-center relative">
-                        <i class="fas fa-star-half-stroke text-6xl text-white/80"></i>
-                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Live · App Store</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-2xl font-bold text-white">ClassRate</h4>
-                            <i class="fab fa-apple text-slate-500 text-xl"></i>
-                        </div>
-                        <p class="text-slate-400 mb-4 flex-grow">
-                            An iOS app that lets students rate and review their classes. Architected the platform from initial development through App Store launch, leveraging CloudKit for data sync and iterating on features based on user metrics and review feedback.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">SwiftUI</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">CloudKit</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">iOS</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Setrix -->
-                <article class="card rounded-xl overflow-hidden flex flex-col">
-                    <div class="h-44 bg-gradient-to-br from-emerald-500/30 via-teal-500/20 to-accent/20 flex items-center justify-center relative">
-                        <i class="fas fa-dumbbell text-6xl text-white/80"></i>
-                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Live · App Store</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-2xl font-bold text-white">Setrix</h4>
-                            <i class="fab fa-apple text-slate-500 text-xl"></i>
-                        </div>
-                        <p class="text-slate-400 mb-4 flex-grow">
-                            A workout tracker for iOS featuring set logging, calendar-based history, and interactive progress visualizations powered by Swift Charts. Uses CloudKit to keep data in sync across devices.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">SwiftUI</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Swift Charts</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">CloudKit</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- ML Research -->
-                <article class="card rounded-xl overflow-hidden flex flex-col">
-                    <div class="h-44 bg-gradient-to-br from-indigo-500/30 via-purple-500/20 to-fuchsia-500/20 flex items-center justify-center relative">
-                        <i class="fas fa-brain text-6xl text-white/80"></i>
-                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Research</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-2xl font-bold text-white">ML &amp; Bayesian Optimization</h4>
-                            <span class="text-xs text-slate-500 font-mono">2024</span>
-                        </div>
-                        <p class="text-slate-400 mb-4 flex-grow">
-                            Research at the University of Minnesota on machine learning and Bayesian optimization, exploring theoretical foundations and applications to problems like molecular structure optimization and complex system tuning.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Python</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Machine Learning</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Bayesian Opt.</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Agentic AI (Capgemini) -->
-                <article class="card rounded-xl overflow-hidden flex flex-col">
-                    <div class="h-44 bg-gradient-to-br from-amber-500/30 via-orange-500/20 to-rose-500/20 flex items-center justify-center relative">
-                        <i class="fas fa-robot text-6xl text-white/80"></i>
-                        <span class="absolute top-3 right-3 text-xs font-mono bg-ink-900/70 text-accent px-2 py-1 rounded-full border border-accent/30">Internship</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-2xl font-bold text-white">Agentic AI System</h4>
-                            <span class="text-xs text-slate-500 font-mono">Capgemini</span>
-                        </div>
-                        <p class="text-slate-400 mb-4 flex-grow">
-                            A full-stack agentic AI system built during my internship at Capgemini. React frontend, FastAPI backend, and a LangChain orchestration layer driving multi-step reasoning for internal tooling.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">LangChain</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">FastAPI</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">React</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Python</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Unity Games -->
-                <article class="card rounded-xl overflow-hidden flex flex-col">
-                    <div class="h-44 bg-gradient-to-br from-violet-500/30 via-blue-500/20 to-accent/20 flex items-center justify-center relative">
-                        <i class="fas fa-gamepad text-6xl text-white/80"></i>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-2xl font-bold text-white">Unity Games &amp; VR</h4>
-                            <span class="text-xs text-slate-500 font-mono">Capgemini</span>
-                        </div>
-                        <p class="text-slate-400 mb-4 flex-grow">
-                            Designed and built a 2D Unity game and a 3D VR experience as part of an internship rotation, picking up new tooling, scripting in C#, and shipping playable demos within tight timelines.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">Unity</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">C#</span>
-                            <span class="chip text-xs font-medium px-3 py-1 rounded-full">VR</span>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 section-fade-in">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-sm font-mono text-accent mb-2 tracking-wide text-center">04. Skills</h2>
-                <h3 class="text-4xl font-bold text-center mb-12 text-white">Technical toolkit</h3>
-
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-swift text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">Swift / SwiftUI</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-python text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">Python</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-java text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">Java</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-js-square text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">JavaScript</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-react text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">React / Next.js</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fas fa-hashtag text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">C#</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fas fa-database text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">SQL / PostgreSQL</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-aws text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">AWS</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fab fa-git-alt text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">Git</span>
-                    </div>
-                    <div class="card rounded-xl py-6 flex flex-col items-center">
-                        <i class="fas fa-cube text-4xl text-accent mb-2"></i>
-                        <span class="text-slate-300 text-sm">Unity</span>
-                    </div>
-
+        <!-- Projects -->
+        <section id="projects">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="num">03</span>
+                    <h2>Projects</h2>
+                    <span class="rule"></span>
                 </div>
+                <div class="projects-grid">
 
-                <div class="mt-10 text-center">
-                    <p class="text-slate-400 text-sm">
-                        <span class="text-slate-200 font-medium">Also:</span>
-                        LangChain · FastAPI · React Native · Flutter · Swift Charts · CloudKit · Supabase · Excel · CAD
-                    </p>
+                    <article class="tick-card project-card reveal">
+                        <div class="project-top">
+                            <span class="project-index">001</span>
+                            <span class="project-badge">Live · App Store</span>
+                        </div>
+                        <h3>BetterFriends</h3>
+                        <p>
+                            A social iOS app I developed and scaled to <strong>100+ monthly active users across 10+ countries</strong>.
+                            Built on a Supabase + PostgreSQL backend to manage global user data and interactions with high availability and performance.
+                        </p>
+                        <div class="tags">
+                            <span>SwiftUI</span><span>Supabase</span><span>PostgreSQL</span><span>iOS</span>
+                        </div>
+                    </article>
+
+                    <article class="tick-card project-card reveal" style="--d: 0.08s">
+                        <div class="project-top">
+                            <span class="project-index">002</span>
+                            <span class="project-badge">Live · App Store</span>
+                        </div>
+                        <h3>ClassRate</h3>
+                        <p>
+                            An iOS app that lets students rate and review their classes. Architected the platform from initial development
+                            through App Store launch, leveraging CloudKit for data sync and iterating on features based on user metrics and review feedback.
+                        </p>
+                        <div class="tags">
+                            <span>SwiftUI</span><span>CloudKit</span><span>iOS</span>
+                        </div>
+                    </article>
+
+                    <article class="tick-card project-card reveal" style="--d: 0.16s">
+                        <div class="project-top">
+                            <span class="project-index">003</span>
+                            <span class="project-badge">Live · App Store</span>
+                        </div>
+                        <h3>Setrix</h3>
+                        <p>
+                            A workout tracker for iOS featuring set logging, calendar-based history, and interactive progress visualizations
+                            powered by Swift Charts. Uses CloudKit to keep data in sync across devices.
+                        </p>
+                        <div class="tags">
+                            <span>SwiftUI</span><span>Swift Charts</span><span>CloudKit</span>
+                        </div>
+                    </article>
+
+                    <article class="tick-card project-card reveal">
+                        <div class="project-top">
+                            <span class="project-index">004</span>
+                            <span class="project-badge alt">Research · 2024</span>
+                        </div>
+                        <h3>ML &amp; Bayesian Optimization</h3>
+                        <p>
+                            Research at the University of Minnesota on machine learning and Bayesian optimization, exploring theoretical
+                            foundations and applications to problems like molecular structure optimization and complex system tuning.
+                        </p>
+                        <div class="tags">
+                            <span>Python</span><span>Machine Learning</span><span>Bayesian Opt.</span>
+                        </div>
+                    </article>
+
+                    <article class="tick-card project-card reveal" style="--d: 0.08s">
+                        <div class="project-top">
+                            <span class="project-index">005</span>
+                            <span class="project-badge alt">Capgemini</span>
+                        </div>
+                        <h3>Agentic AI System</h3>
+                        <p>
+                            A full-stack agentic AI system built during my internship at Capgemini. React frontend, FastAPI backend,
+                            and a LangChain orchestration layer driving multi-step reasoning for internal tooling.
+                        </p>
+                        <div class="tags">
+                            <span>LangChain</span><span>FastAPI</span><span>React</span><span>Python</span>
+                        </div>
+                    </article>
+
+                    <article class="tick-card project-card reveal" style="--d: 0.16s">
+                        <div class="project-top">
+                            <span class="project-index">006</span>
+                            <span class="project-badge alt">Capgemini</span>
+                        </div>
+                        <h3>Unity Games &amp; VR</h3>
+                        <p>
+                            Designed and built a 2D Unity game and a 3D VR experience as part of an internship rotation, picking up new
+                            tooling, scripting in C#, and shipping playable demos within tight timelines.
+                        </p>
+                        <div class="tags">
+                            <span>Unity</span><span>C#</span><span>VR</span>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 text-center section-fade-in">
-            <h2 class="text-sm font-mono text-accent mb-2 tracking-wide">05. Contact</h2>
-            <h3 class="text-4xl md:text-5xl font-bold mb-4 text-white">Let's get in touch</h3>
-            <p class="text-slate-400 max-w-xl mx-auto mb-10">
-                I'm currently looking for new-grad software engineering roles and open to interesting collaborations. The fastest way to reach me is email, I'll respond within a day or two.
-            </p>
-            <a href="mailto:varunkollipara11@gmail.com" class="inline-flex items-center gap-2 bg-accent text-ink-900 font-semibold py-3 px-8 rounded-full hover:bg-accent-soft transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20 mb-10">
-                <i class="fas fa-envelope"></i>
-                Say Hello
-            </a>
-            <div class="flex justify-center items-center gap-8 text-2xl">
-                <a href="https://github.com/VarunKollipara" target="_blank" rel="noopener" aria-label="GitHub" class="text-slate-400 hover:text-accent transition-colors">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/varun-kollipara-509968240/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-400 hover:text-accent transition-colors">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:varunkollipara11@gmail.com" aria-label="Email" class="text-slate-400 hover:text-accent transition-colors">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume" class="text-slate-400 hover:text-accent transition-colors">
-                    <i class="fas fa-file-arrow-down"></i>
-                </a>
+        <!-- Toolkit -->
+        <section id="toolkit">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="num">04</span>
+                    <h2>Toolkit</h2>
+                    <span class="rule"></span>
+                </div>
+                <div class="toolkit reveal">
+                    <span>Swift / SwiftUI</span>
+                    <span>Python</span>
+                    <span>Java</span>
+                    <span>JavaScript</span>
+                    <span>React / Next.js</span>
+                    <span>C#</span>
+                    <span>SQL / PostgreSQL</span>
+                    <span>AWS</span>
+                    <span>Git</span>
+                    <span>Unity</span>
+                </div>
+                <p class="mono toolkit-also reveal" style="--d: 0.1s">
+                    <b>also:</b> LangChain · FastAPI · React Native · Flutter · Swift Charts · CloudKit · Supabase · Excel · CAD
+                </p>
+            </div>
+        </section>
+
+        <!-- Interests -->
+        <section id="interests">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="num">05</span>
+                    <h2>Outside of code</h2>
+                    <span class="rule"></span>
+                </div>
+                <div class="interests-grid">
+                    <div class="tick-card interest-card reveal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18v-15"/><path d="M12 3l7 3.5-7 3.5"/><circle cx="12" cy="20" r="1.6"/></svg>
+                        <h3>Golf</h3>
+                        <p>Chasing fairways and the occasional birdie whenever the Minnesota weather allows.</p>
+                    </div>
+                    <div class="tick-card interest-card reveal" style="--d: 0.08s">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14.5 14.5 0 0 1 0 18a14.5 14.5 0 0 1 0-18"/></svg>
+                        <h3>Traveling</h3>
+                        <p>Exploring new places and cultures — always planning the next trip.</p>
+                    </div>
+                    <div class="tick-card interest-card reveal" style="--d: 0.16s">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="9" rx="4.5"/><path d="M8 12.5v3M6.5 14h3"/><path d="M15.5 13h.01M17.5 15h.01"/></svg>
+                        <h3>Unity side projects</h3>
+                        <p>The occasional game prototype when an idea is too fun not to build.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="contact">
+            <div class="wrap">
+                <p class="mono reveal">06 — contact</p>
+                <h2 class="reveal" style="--d: 0.08s">Let's get in touch.</h2>
+                <p class="reveal" style="--d: 0.16s">
+                    I'm currently looking for new-grad software engineering roles and open to interesting collaborations.
+                    The fastest way to reach me is email, I'll respond within a day or two.
+                </p>
+                <div class="reveal" style="--d: 0.24s">
+                    <a href="mailto:varunkollipara11@gmail.com" class="btn btn-primary">say hello →</a>
+                </div>
+                <div class="contact-links reveal" style="--d: 0.32s">
+                    <a href="https://github.com/VarunKollipara" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        github
+                    </a>
+                    <a href="https://www.linkedin.com/in/varun-kollipara-509968240/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+                        linkedin
+                    </a>
+                    <a href="mailto:varunkollipara11@gmail.com">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                        email
+                    </a>
+                    <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        resume
+                    </a>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/60 mt-10">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500 text-sm">
-            <p>Designed &amp; built by Varun Kollipara · &copy; 2026</p>
+    <footer>
+        <div class="wrap mono">
+            <p>Designed &amp; built by Varun Kollipara · © 2026</p>
+            <p>made in minneapolis_</p>
         </div>
     </footer>
 
     <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        // Mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        menuToggle.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', open);
+            menuToggle.textContent = open ? 'close' : 'menu';
         });
-
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = 'menu';
             });
         });
 
-        const sections = document.querySelectorAll('.section-fade-in');
-        const observer = new IntersectionObserver((entries) => {
+        // Entrance animations
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('in');
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1
-        });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-        sections.forEach(section => {
-            observer.observe(section);
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Scrollspy for nav links
+        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+
+        ['about', 'experience', 'projects', 'interests', 'contact'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) spyObserver.observe(el);
         });
     </script>
 </body>
