@@ -416,6 +416,38 @@
             45%, 70% { stroke-dashoffset: 0; }
             95%, 100% { stroke-dashoffset: -300; }
         }
+
+        /* AQSG test generator */
+        .qa-demo { width: 100%; max-width: 235px; }
+        .qa-file {
+            display: inline-block; font-size: 0.76rem; font-weight: 600; color: var(--rose);
+            background: #fff; border: 1px solid #FBC7D3; border-radius: 9px; padding: 6px 11px; margin-bottom: 10px;
+        }
+        .qa-rows { display: flex; flex-direction: column; gap: 6px; }
+        .qa-row {
+            display: flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #FBC7D3;
+            border-radius: 9px; padding: 6px 10px; font-size: 0.72rem; font-weight: 500; color: var(--muted);
+            opacity: 0; transform: translateY(-5px); transition: opacity 0.35s, transform 0.35s;
+        }
+        .qa-row.on { opacity: 1; transform: none; }
+        .qa-id { font-weight: 700; color: var(--rose); }
+        .qa-check { margin-left: auto; color: var(--emerald); font-weight: 800; }
+        .qa-export { margin-top: 10px; text-align: center; font-size: 0.76rem; font-weight: 700; color: var(--rose); opacity: 0; transition: opacity 0.4s; }
+        .qa-export.on { opacity: 1; }
+
+        /* Electrified golf cart */
+        .gc-demo { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .gc-cart { animation: gc-bob 2.2s ease-in-out infinite; }
+        @keyframes gc-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+        .gc-wheel { animation: gc-spin 1.5s linear infinite; transform-box: fill-box; transform-origin: center; }
+        @keyframes gc-spin { to { transform: rotate(360deg); } }
+        .gc-ground { stroke: #B8DDC8; stroke-width: 3; stroke-dasharray: 10 8; animation: gc-roll 0.8s linear infinite; }
+        @keyframes gc-roll { to { stroke-dashoffset: -18; } }
+        .gc-caption {
+            font-size: 0.8rem; font-weight: 600; color: var(--emerald);
+            background: #fff; border: 1px solid #BFE8D2; border-radius: 999px; padding: 7px 14px;
+            box-shadow: 0 4px 12px rgba(5,150,105,0.1); white-space: nowrap;
+        }
         .ai-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
         .ai-node {
             flex: 1; text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--rose);
@@ -1016,7 +1048,7 @@
                     </article>
 
                     <!-- Drawing Robot -->
-                    <article class="card violet reveal" style="--d: 0.18s">
+                    <article class="card violet reveal">
                         <div class="demo violet-soft-bg">
                             <div class="rb-demo">
                                 <svg width="240" height="150" viewBox="0 0 240 150">
@@ -1045,6 +1077,90 @@
                                 <span class="violet-soft-bg violet-text">Robotics</span>
                             </div>
                             <a class="project-link violet-text" href="https://github.com/VarunKollipara/RoboticsFinalProject" target="_blank" rel="noopener">View on GitHub ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- AQSG -->
+                    <article class="card rose reveal" style="--d: 0.06s">
+                        <div class="demo rose-soft-bg">
+                            <div class="qa-demo">
+                                <div class="qa-file">📄 requirements.pdf</div>
+                                <div class="qa-rows" id="qaRows">
+                                    <div class="qa-row on"><span class="qa-id">TC-01</span> Login validation <span class="qa-check">✓</span></div>
+                                    <div class="qa-row on"><span class="qa-id">TC-02</span> Empty-field edge case <span class="qa-check">✓</span></div>
+                                    <div class="qa-row on"><span class="qa-id">TC-03</span> Session timeout <span class="qa-check">✓</span></div>
+                                </div>
+                                <div class="qa-export on" id="qaExport">Exported to CSV ✓</div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">008</span>
+                                <span class="project-badge rose-soft-bg rose-text">Agentic AI</span>
+                            </div>
+                            <h3>AQSG</h3>
+                            <p>An agentic QA scenario generator: upload a requirements document and get a structured test suite in seconds, including edge cases teams tend to miss. Refine it by typing or talking to the AI, then export a CSV ready for Jira.</p>
+                            <div class="tags">
+                                <span class="rose-soft-bg rose-text">TypeScript</span>
+                                <span class="rose-soft-bg rose-text">Python</span>
+                                <span class="rose-soft-bg rose-text">Gemini</span>
+                            </div>
+                            <a class="project-link rose-text" href="https://github.com/VarunKollipara/AQSG" target="_blank" rel="noopener">View on GitHub ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- Electrified golf push cart -->
+                    <article class="card emerald reveal" style="--d: 0.12s">
+                        <div class="demo emerald-soft-bg">
+                            <div class="gc-demo">
+                                <svg width="220" height="120" viewBox="0 0 220 120">
+                                    <line class="gc-ground" x1="0" y1="108" x2="220" y2="108"/>
+                                    <g class="gc-cart">
+                                        <!-- frame and handle -->
+                                        <g stroke="#26221C" stroke-width="5" stroke-linecap="round" fill="none">
+                                            <path d="M78 92 L48 34"/>
+                                            <path d="M48 34 L36 30"/>
+                                            <path d="M78 92 L142 96"/>
+                                        </g>
+                                        <!-- golf bag -->
+                                        <g transform="rotate(20 105 55)">
+                                            <rect x="92" y="26" width="26" height="60" rx="10" fill="#059669"/>
+                                            <line x1="99" y1="28" x2="95" y2="12" stroke="#26221C" stroke-width="3" stroke-linecap="round"/>
+                                            <line x1="108" y1="28" x2="108" y2="10" stroke="#26221C" stroke-width="3" stroke-linecap="round"/>
+                                            <circle cx="95" cy="10" r="4" fill="#26221C"/>
+                                            <circle cx="108" cy="8" r="4" fill="#26221C"/>
+                                        </g>
+                                        <!-- battery pack -->
+                                        <rect x="98" y="80" width="30" height="15" rx="4" fill="#26221C"/>
+                                        <text x="113" y="92" text-anchor="middle" font-size="11" fill="#FCD34D">⚡</text>
+                                        <!-- wheels -->
+                                        <g class="gc-wheel">
+                                            <circle cx="78" cy="94" r="14" fill="#fff" stroke="#26221C" stroke-width="4"/>
+                                            <line x1="78" y1="83" x2="78" y2="105" stroke="#26221C" stroke-width="2.5"/>
+                                            <line x1="67" y1="94" x2="89" y2="94" stroke="#26221C" stroke-width="2.5"/>
+                                        </g>
+                                        <g class="gc-wheel">
+                                            <circle cx="146" cy="97" r="11" fill="#fff" stroke="#26221C" stroke-width="4"/>
+                                            <line x1="146" y1="89" x2="146" y2="105" stroke="#26221C" stroke-width="2.5"/>
+                                            <line x1="138" y1="97" x2="154" y2="97" stroke="#26221C" stroke-width="2.5"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="gc-caption">⚡ zero pushing required</div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">009</span>
+                                <span class="project-badge emerald-soft-bg emerald-text">Hardware build</span>
+                            </div>
+                            <h3>Electrified Golf Push Cart</h3>
+                            <p>Golf meets engineering: a DIY hardware project where I converted a standard push cart into a motorized one, wiring a battery-powered drive system so the cart rolls itself down the fairway.</p>
+                            <div class="tags">
+                                <span class="emerald-soft-bg emerald-text">Hardware</span>
+                                <span class="emerald-soft-bg emerald-text">Electronics</span>
+                                <span class="emerald-soft-bg emerald-text">DIY</span>
+                            </div>
                         </div>
                     </article>
 
@@ -1545,6 +1661,21 @@
             cycle();
         }
         if (taCode) whenVisible(taCode, runTa);
+
+        /* ---------- AQSG test generator ---------- */
+        const qaRows = document.querySelectorAll('#qaRows .qa-row');
+        const qaExport = document.getElementById('qaExport');
+        function runQa() {
+            function cycle() {
+                qaRows.forEach(r => r.classList.remove('on'));
+                qaExport.classList.remove('on');
+                qaRows.forEach((r, i) => setTimeout(() => r.classList.add('on'), 700 + i * 700));
+                setTimeout(() => qaExport.classList.add('on'), 700 + qaRows.length * 700 + 200);
+                setTimeout(cycle, 700 + qaRows.length * 700 + 3000);
+            }
+            cycle();
+        }
+        if (qaExport) whenVisible(qaExport, runQa);
 
         /* ---------- Unity caption cycle ---------- */
         const unCaption = document.getElementById('unCaption');
