@@ -3,737 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varun Kollipara — Software Engineer</title>
-    <meta name="description" content="Varun Kollipara is a Computer Science student at the University of Minnesota and a software engineer building iOS apps, full-stack web platforms, and AI products.">
+    <title>Varun Kollipara · Software Engineer</title>
+    <meta name="description" content="Varun Kollipara is a software engineer and University of Minnesota computer science grad building iOS apps, full-stack web platforms, and interactive AI tools.">
     <meta name="author" content="Varun Kollipara">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Varun Kollipara — Software Engineer">
-    <meta property="og:description" content="Computer Science @ University of Minnesota. iOS apps, full-stack development, and AI.">
+    <meta property="og:title" content="Varun Kollipara · Software Engineer">
+    <meta property="og:description" content="B.S. Computer Science, University of Minnesota. iOS apps, full-stack development, and AI.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="images/profile.jpg">
+    <meta property="og:url" content="https://varunkollipara.github.io/">
+    <meta property="og:image" content="https://varunkollipara.github.io/images/profile-web.jpg">
 
-    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
+    <link rel="icon" type="image/jpeg" href="images/profile-web.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <script>document.documentElement.classList.add('js');</script>
 
     <style>
         :root {
-            --bg: #0e0e0c;
-            --surface: #161614;
-            --surface-2: #1c1c19;
-            --ink: #ecebe6;
-            --muted: #8a897f;
-            --faint: #56554d;
-            --accent: #c8f135;
-            --accent-dim: rgba(200, 241, 53, 0.12);
-            --line: rgba(236, 235, 230, 0.1);
-            --grid: rgba(236, 235, 230, 0.032);
-            --font-display: 'Space Grotesk', sans-serif;
+            --bg: #FDFBF7;
+            --ink: #26221C;
+            --muted: #6E675E;
+            --faint: #A39C90;
+            --card: #FFFFFF;
+            --line: #ECE5DA;
+
+            --violet: #7C3AED;   --violet-soft: #F3EEFE;
+            --amber: #D97706;    --amber-soft: #FDF3E3;
+            --emerald: #059669;  --emerald-soft: #E7F6EF;
+            --sky: #0284C7;      --sky-soft: #E6F3FA;
+            --rose: #E11D48;     --rose-soft: #FCE9EE;
+            --teal: #0D9488;     --teal-soft: #E5F5F3;
+            --indigo: #4F46E5;   --indigo-soft: #ECEBFC;
+
+            --font-display: 'Sora', sans-serif;
             --font-body: 'Inter', sans-serif;
-            --font-mono: 'IBM Plex Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 88px;
-        }
+        html { scroll-behavior: auto; overflow-anchor: none; }
 
         body {
             background: var(--bg);
             color: var(--ink);
             font-family: var(--font-body);
-            font-size: 16px;
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* Blueprint grid backdrop */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(to right, var(--grid) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-            background-size: 72px 72px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        ::selection { background: var(--accent); color: var(--bg); }
+        h1, h2, h3, .logo { font-family: var(--font-display); letter-spacing: -0.02em; }
 
         a { color: inherit; text-decoration: none; }
 
-        :focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
+        ::selection { background: var(--violet); color: #fff; }
 
-        .wrap {
-            position: relative;
-            z-index: 1;
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        :focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; border-radius: 2px; }
 
-        .mono {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            letter-spacing: 0.02em;
-        }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
         /* ---------- Header ---------- */
         header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 50;
-            background: rgba(14, 14, 12, 0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            background: rgba(253, 251, 247, 0.86);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--line);
         }
-
-        .nav-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-
-        .logo {
-            font-family: var(--font-mono);
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--ink);
-        }
-        .logo b { color: var(--accent); font-weight: 500; }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
+        .nav-bar { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { font-weight: 800; font-size: 1.15rem; }
+        .logo span { color: var(--violet); }
+        .nav-links { display: flex; align-items: center; gap: 26px; }
         .nav-links a {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--muted);
-            position: relative;
-            padding: 4px 0;
-            transition: color 0.25s ease;
+            font-weight: 500; font-size: 0.92rem; color: var(--muted);
+            position: relative; padding: 4px 0; transition: color 0.2s ease;
         }
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0; bottom: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
+            content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px;
+            background: var(--violet); border-radius: 2px;
+            transform: scaleX(0); transform-origin: right; transition: transform 0.25s ease;
         }
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--ink); }
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
 
         .resume-btn {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--accent) !important;
-            border: 1px solid rgba(200, 241, 53, 0.35);
-            padding: 8px 16px !important;
-            transition: background 0.25s ease, color 0.25s ease !important;
+            font-weight: 600; font-size: 0.86rem; color: var(--violet) !important;
+            border: 1.5px solid #D8CBFA; padding: 8px 16px !important; border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
         }
         .resume-btn::after { display: none; }
-        .resume-btn:hover {
-            background: var(--accent);
-            color: var(--bg) !important;
-        }
+        .resume-btn:hover { background: var(--violet); color: #fff !important; border-color: var(--violet); }
 
         .menu-toggle {
-            display: none;
-            background: none;
-            border: 1px solid var(--line);
-            color: var(--ink);
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            padding: 8px 14px;
-            cursor: pointer;
+            display: none; background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+            color: var(--ink); font-weight: 600; font-size: 0.85rem; padding: 8px 16px; cursor: pointer;
         }
 
-        .mobile-menu {
-            display: none;
-            border-top: 1px solid var(--line);
-            padding: 12px 24px 20px;
-        }
+        .mobile-menu { display: none; border-top: 1px solid var(--line); padding: 10px 24px 20px; }
         .mobile-menu.open { display: block; }
         .mobile-menu a {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--muted);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(236, 235, 230, 0.05);
+            display: block; font-weight: 500; font-size: 0.95rem; color: var(--muted);
+            padding: 12px 0; border-bottom: 1px solid var(--line);
         }
-        .mobile-menu a:last-child { border-bottom: none; color: var(--accent); }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--violet); font-weight: 600; }
 
         /* ---------- Hero ---------- */
         .hero {
-            min-height: 100svh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-top: 96px;
-            padding-bottom: 64px;
+            position: relative; overflow: hidden;
+            min-height: 92svh; display: flex; flex-direction: column; justify-content: center;
+            padding-top: 100px; padding-bottom: 56px;
+        }
+        .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; pointer-events: none; }
+        .blob-1 { width: 380px; height: 380px; background: #C4B5FD; top: -100px; left: -110px; }
+        .blob-2 { width: 320px; height: 320px; background: #FCD34D; top: 20px; right: -130px; opacity: 0.3; }
+        .blob-3 { width: 280px; height: 280px; background: #6EE7B7; bottom: -160px; left: 38%; opacity: 0.22; }
+
+        .hero-kicker { font-weight: 600; color: var(--violet); margin-bottom: 18px; }
+        .wave { display: inline-block; transform-origin: 70% 70%; animation: wave 2.6s ease-in-out infinite; }
+        @keyframes wave {
+            0%, 60%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(16deg); }
+            20%, 40% { transform: rotate(-8deg); }
+            50% { transform: rotate(6deg); }
         }
 
-        .hero-kicker {
-            color: var(--accent);
-            margin-bottom: 28px;
+        .hero-name { font-weight: 800; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.06; }
+        .hero-name .hl {
+            background: linear-gradient(120deg, var(--violet), var(--rose), var(--amber));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
         }
 
-        .hero-name {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(3.2rem, 11vw, 8rem);
-            line-height: 0.95;
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-        }
-        .hero-name .outline {
-            display: block;
-            color: transparent;
-            -webkit-text-stroke: 1.5px var(--ink);
-        }
-
-        .hero-tagline {
-            margin-top: 32px;
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: clamp(1.25rem, 3vw, 1.9rem);
-            color: var(--ink);
-        }
+        .hero-tagline { margin-top: 18px; font-weight: 700; font-size: clamp(1.15rem, 2.6vw, 1.5rem); color: var(--ink); font-family: var(--font-display); }
         .hero-tagline .caret {
-            display: inline-block;
-            width: 0.55em;
-            height: 1.05em;
-            background: var(--accent);
-            vertical-align: text-bottom;
-            margin-left: 6px;
+            display: inline-block; width: 0.5em; height: 1em; background: var(--violet);
+            vertical-align: text-bottom; margin-left: 5px; border-radius: 1px;
             animation: blink 1.1s steps(1) infinite;
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        .hero-sub {
-            margin-top: 20px;
-            max-width: 560px;
-            color: var(--muted);
-        }
-        .hero-sub strong { color: var(--ink); font-weight: 500; }
+        .hero-sub { margin-top: 18px; max-width: 600px; color: var(--muted); font-size: 1.05rem; }
+        .hero-sub strong { color: var(--ink); font-weight: 600; }
 
-        .hero-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 32px;
-            border: 1px solid var(--line);
-            background: var(--surface);
-            padding: 8px 16px;
-            color: var(--muted);
-        }
-        .hero-status .dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 241, 53, 0.45); }
-            50% { box-shadow: 0 0 0 6px rgba(200, 241, 53, 0); }
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 40px;
-        }
-
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
         .btn {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            padding: 13px 28px;
-            border: 1px solid var(--line);
-            color: var(--ink);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+            font-weight: 600; font-size: 0.95rem; padding: 13px 26px; border-radius: 999px;
+            display: inline-flex; align-items: center; gap: 9px; border: 1.5px solid var(--line);
+            background: var(--card); color: var(--ink);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-        .btn-primary {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg);
-        }
-        .btn-primary:hover { background: #d9fb5c; color: var(--bg); }
-        .btn svg { width: 14px; height: 14px; }
-
-        .hero-scroll {
-            margin-top: auto;
-            padding-top: 48px;
-            color: var(--faint);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .hero-scroll .tick {
-            display: inline-block;
-            width: 48px;
-            height: 1px;
-            background: var(--faint);
-        }
+        .btn:hover { transform: translateY(-2px); border-color: var(--ink); }
+        .btn-primary { background: var(--ink); border-color: var(--ink); color: #fff; box-shadow: 0 4px 14px rgba(38,34,28,0.22); }
+        .btn-primary:hover { border-color: var(--ink); }
+        .btn svg { width: 15px; height: 15px; }
 
         /* ---------- Sections ---------- */
-        section { padding: 96px 0; }
+        section { padding: 88px 0; scroll-margin-top: 68px; }
+        .section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
+        .section-head .num { font-weight: 700; font-size: 0.85rem; padding: 5px 12px; border-radius: 999px; }
+        .section-head h2 { font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.2rem); white-space: nowrap; }
+        .section-head .rule { flex: 1; height: 1px; background: var(--line); }
 
-        .section-head {
-            display: flex;
-            align-items: baseline;
-            gap: 18px;
-            margin-bottom: 56px;
+        .card {
+            background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .section-head .num {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent);
-        }
-        .section-head h2 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(1.7rem, 4vw, 2.4rem);
-            letter-spacing: -0.02em;
-            white-space: nowrap;
-        }
-        .section-head .rule {
-            flex: 1;
-            height: 1px;
-            background: var(--line);
-            transform: translateY(-6px);
-        }
-
-        /* Corner-tick card */
-        .tick-card {
-            position: relative;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            transition: border-color 0.3s ease, transform 0.3s ease;
-        }
-        .tick-card::before,
-        .tick-card::after {
-            content: '';
-            position: absolute;
-            width: 14px; height: 14px;
-            border: 0 solid var(--accent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .tick-card::before {
-            top: -1px; left: -1px;
-            border-top-width: 2px;
-            border-left-width: 2px;
-        }
-        .tick-card::after {
-            bottom: -1px; right: -1px;
-            border-bottom-width: 2px;
-            border-right-width: 2px;
-        }
-        .tick-card:hover { border-color: rgba(236, 235, 230, 0.22); transform: translateY(-3px); }
-        .tick-card:hover::before,
-        .tick-card:hover::after { opacity: 1; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(38, 34, 28, 0.08); }
 
         /* ---------- About ---------- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 48px;
-            align-items: start;
-        }
+        .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 44px; align-items: start; }
+        .about-text p { color: var(--muted); margin-bottom: 16px; }
+        .about-text strong { color: var(--ink); font-weight: 600; }
+        .about-text .hl { color: var(--violet); font-weight: 600; }
+        .about-side { display: flex; flex-direction: column; gap: 22px; }
 
-        .about-text p { color: var(--muted); margin-bottom: 18px; }
-        .about-text strong { color: var(--ink); font-weight: 500; }
-        .about-text .hl { color: var(--accent); }
-
-        .about-side { display: flex; flex-direction: column; gap: 24px; }
-
-        .portrait {
-            position: relative;
-            align-self: center;
-        }
+        .portrait { align-self: center; position: relative; }
         .portrait img {
-            display: block;
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
-            filter: grayscale(60%) contrast(1.05);
-            transition: filter 0.4s ease;
+            display: block; width: 210px; height: 210px; border-radius: 24px; object-fit: cover;
+            transform: rotate(-2deg); box-shadow: 0 16px 34px rgba(38, 34, 28, 0.14); border: 5px solid #fff;
         }
-        .portrait:hover img { filter: grayscale(0%); }
-        .portrait::before,
-        .portrait::after {
-            content: '';
-            position: absolute;
-            width: 20px; height: 20px;
-            border: 0 solid var(--accent);
-        }
-        .portrait::before { top: -8px; left: -8px; border-top-width: 2px; border-left-width: 2px; }
-        .portrait::after { bottom: -8px; right: -8px; border-bottom-width: 2px; border-right-width: 2px; }
 
         .edu-card { padding: 24px; }
         .edu-card .label {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 10px;
+            font-weight: 700; font-size: 0.72rem; color: var(--emerald); text-transform: uppercase;
+            letter-spacing: 0.08em; margin-bottom: 8px;
         }
         .edu-card p { font-size: 0.92rem; color: var(--muted); }
-        .edu-card p strong { color: var(--ink); font-weight: 500; }
-        .edu-card hr { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
+        .edu-card p strong { color: var(--ink); font-weight: 600; }
+        .edu-card hr { border: none; border-top: 1px solid var(--line); margin: 16px 0; }
 
         /* ---------- Experience ---------- */
-        .timeline {
-            list-style: none;
-            position: relative;
-            padding-left: 36px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 6px; bottom: 6px; left: 6px;
-            width: 1px;
-            background: var(--line);
+        .timeline { list-style: none; position: relative; padding-left: 34px; }
+        .timeline::before { content: ''; position: absolute; top: 6px; bottom: 6px; left: 6px; width: 1.5px; background: var(--line); }
+        .timeline > li { position: relative; padding-bottom: 40px; }
+        .timeline > li:last-child { padding-bottom: 0; }
+        .timeline > li::before {
+            content: ''; position: absolute; left: -32px; top: 32px; width: 10px; height: 10px;
+            background: var(--xp, var(--faint)); border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--bg);
         }
 
-        .timeline li { position: relative; padding-bottom: 48px; }
-        .timeline li:last-child { padding-bottom: 0; }
-
-        .timeline li::before {
-            content: '';
-            position: absolute;
-            left: -34px;
-            top: 8px;
-            width: 9px; height: 9px;
-            background: var(--bg);
-            border: 2px solid var(--faint);
-            transform: rotate(45deg);
-            transition: border-color 0.3s ease, background 0.3s ease;
+        .xp-card { display: grid; grid-template-columns: 290px 1fr; padding: 0; overflow: hidden; }
+        .xp-demo {
+            display: flex; align-items: center; justify-content: center;
+            padding: 22px; position: relative; overflow: hidden;
         }
-        .timeline li.current::before { border-color: var(--accent); }
-        .timeline li:hover::before { background: var(--accent); border-color: var(--accent); }
-
-        .xp-card { padding: 28px; }
-
-        .xp-head {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 8px;
-            margin-bottom: 4px;
+        .xp-body { padding: 24px 28px 26px; min-width: 0; }
+        .xp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+        .xp-id { display: flex; align-items: center; gap: 14px; min-width: 0; }
+        .xp-logo {
+            width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 800; font-size: 1.2rem;
         }
-        .xp-head h3 {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 1.2rem;
-            letter-spacing: -0.01em;
+        .xp-head h3 { font-weight: 700; font-size: 1.12rem; line-height: 1.35; }
+        .xp-head h3 span { color: var(--xp, var(--indigo)); }
+        .xp-meta { color: var(--faint); font-size: 0.84rem; }
+        .xp-date {
+            font-size: 0.76rem; font-weight: 700; white-space: nowrap;
+            padding: 5px 13px; border-radius: 999px; margin-top: 4px;
         }
-        .xp-head h3 span { color: var(--accent); }
-        .xp-date { color: var(--muted); white-space: nowrap; }
-        .xp-loc { color: var(--faint); margin-bottom: 16px; }
-
         .xp-card ul { list-style: none; }
-        .xp-card ul li {
-            position: relative;
-            padding: 0 0 8px 22px;
-            color: var(--muted);
-            font-size: 0.95rem;
+        .xp-card ul li { position: relative; padding: 0 0 8px 20px; color: var(--muted); font-size: 0.94rem; }
+        .xp-card ul li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 12px; height: 2px; border-radius: 2px; background: var(--xp, var(--indigo)); }
+        .xp-card ul li strong { color: var(--ink); font-weight: 600; }
+        .xp-tags { margin-top: 14px; }
+
+        /* Capgemini sprint board */
+        .kb-demo { width: 100%; max-width: 250px; }
+        .kb-cols { display: flex; gap: 8px; }
+        .kb-col { flex: 1; background: #fff; border: 1px solid #DDD9F6; border-radius: 10px; padding: 8px 7px; min-height: 100px; }
+        .kb-title { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); margin-bottom: 7px; }
+        .kb-ticket {
+            font-size: 0.68rem; font-weight: 600; color: var(--indigo); background: var(--indigo-soft);
+            border-radius: 7px; padding: 6px 7px; opacity: 0; transform: translateY(-6px) scale(0.92);
+            transition: opacity 0.3s ease, transform 0.3s ease; white-space: nowrap;
         }
-        .xp-card ul li::before {
-            content: '»';
-            position: absolute;
-            left: 0;
-            top: -1px;
-            color: var(--accent);
-            font-family: var(--font-mono);
-            border: none;
-            background: none;
-            width: auto; height: auto;
-            transform: none;
-        }
-        .xp-card ul li strong { color: var(--ink); font-weight: 500; }
+        .kb-ticket.on { opacity: 1; transform: none; }
+        .kb-status { margin-top: 12px; text-align: center; font-size: 0.78rem; font-weight: 600; color: var(--indigo); min-height: 1.4em; }
+
+        /* PRSM site builder */
+        .wb-demo { width: 100%; max-width: 230px; }
+        .wb-window { background: #fff; border: 1px solid #CDE8F6; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(2,132,199,0.08); }
+        .wb-bar { display: flex; gap: 4px; padding: 8px 10px; border-bottom: 1px solid #E3F2FA; }
+        .wb-bar span { width: 7px; height: 7px; border-radius: 50%; background: #CDE8F6; }
+        .wb-canvas { padding: 11px 12px 14px; display: flex; flex-direction: column; gap: 7px; }
+        .wb-el { border-radius: 5px; background: var(--sky-soft); opacity: 0; transform: scaleX(0.6); transform-origin: left; transition: opacity 0.4s ease, transform 0.4s ease; }
+        .wb-el.on { opacity: 1; transform: none; }
+        .wb-nav { height: 9px; width: 60%; }
+        .wb-hero { height: 30px; width: 100%; background: #BAE0F5; }
+        .wb-line1 { height: 7px; width: 85%; }
+        .wb-line2 { height: 7px; width: 65%; }
+        .wb-cta { height: 12px; width: 40%; background: var(--sky); }
+        .wb-status { margin-top: 12px; text-align: center; font-size: 0.78rem; font-weight: 600; color: var(--sky); min-height: 1.4em; }
+
+        /* Kumon worksheet */
+        .km-demo { width: 100%; max-width: 205px; }
+        .km-sheet { background: #fff; border: 1px solid #FDE1B8; border-radius: 12px; padding: 14px 16px; box-shadow: 0 6px 18px rgba(217,119,6,0.1); }
+        .km-row { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 600; color: var(--muted); padding: 4px 0; font-variant-numeric: tabular-nums; }
+        .km-a { color: var(--ink); min-width: 20px; }
+        .km-check { color: var(--emerald); font-weight: 800; opacity: 0; transform: scale(0.4); transition: opacity 0.3s, transform 0.3s; margin-left: auto; }
+        .km-row.done .km-check { opacity: 1; transform: scale(1); }
+        .km-grade { margin-top: 9px; text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--amber); opacity: 0; transition: opacity 0.4s; }
+        .km-grade.on { opacity: 1; }
+
+        /* Tech Academy code editor */
+        .ta-demo { width: 100%; max-width: 230px; }
+        .ta-editor { background: #fff; border: 1px solid #FBC7D3; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(225,29,72,0.08); }
+        .ta-bar { display: flex; gap: 4px; padding: 8px 10px; border-bottom: 1px solid #FCE0E7; }
+        .ta-bar span { width: 7px; height: 7px; border-radius: 50%; background: #FBC7D3; }
+        .ta-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; color: var(--ink); padding: 12px 14px 4px; min-height: 30px; margin: 0; white-space: pre-wrap; word-break: break-word; }
+        .ta-caret { display: inline-block; width: 2px; height: 1em; background: var(--rose); vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+        .ta-out { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; color: var(--rose); padding: 2px 14px 12px; min-height: 24px; opacity: 0; transition: opacity 0.3s; }
+        .ta-out.on { opacity: 1; }
 
         /* ---------- Projects ---------- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 22px; }
 
-        .project-card {
-            padding: 26px;
-            display: flex;
-            flex-direction: column;
+        .demo {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 200px; padding: 22px; border-radius: 20px 20px 0 0; position: relative; overflow: hidden;
         }
-
-        .project-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-        }
-        .project-index {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--faint);
-        }
+        .project-card-body { padding: 24px 26px 26px; }
+        .project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .project-index { font-size: 0.75rem; color: var(--faint); font-weight: 600; }
         .project-badge {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            color: var(--accent);
-            background: var(--accent-dim);
-            border: 1px solid rgba(200, 241, 53, 0.25);
-            padding: 3px 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+            font-size: 0.68rem; font-weight: 700; padding: 4px 11px; border-radius: 999px;
+            text-transform: uppercase; letter-spacing: 0.05em;
         }
-        .project-badge.alt {
-            color: var(--muted);
-            background: transparent;
-            border-color: var(--line);
+        .project-card-body h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; transition: color 0.2s ease; }
+        .project-card-body p { color: var(--muted); font-size: 0.93rem; margin-bottom: 16px; }
+        .project-card-body p strong { color: var(--ink); font-weight: 600; }
+        .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+        .tags span { font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+
+        .project-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 0.88rem; font-weight: 600; }
+        .project-link:hover { text-decoration: underline; }
+
+        .violet-text { color: var(--violet); } .violet-soft-bg { background: var(--violet-soft); }
+        .amber-text { color: var(--amber); }   .amber-soft-bg { background: var(--amber-soft); }
+        .emerald-text { color: var(--emerald); } .emerald-soft-bg { background: var(--emerald-soft); }
+        .sky-text { color: var(--sky); }       .sky-soft-bg { background: var(--sky-soft); }
+        .rose-text { color: var(--rose); }     .rose-soft-bg { background: var(--rose-soft); }
+        .teal-text { color: var(--teal); }     .teal-soft-bg { background: var(--teal-soft); }
+        .indigo-text { color: var(--indigo); } .indigo-soft-bg { background: var(--indigo-soft); }
+
+        .card.violet:hover  { border-color: #C4B5FD; }
+        .card.amber:hover   { border-color: #FCD34D; }
+        .card.emerald:hover { border-color: #6EE7B7; }
+        .card.sky:hover     { border-color: #7DD3FC; }
+        .card.rose:hover    { border-color: #FDA4AF; }
+        .card.teal:hover    { border-color: #5EEAD4; }
+        .card.indigo:hover  { border-color: #C7D2FE; }
+
+        /* Featured (Transformer Visualizer) */
+        .featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; }
+        .featured .demo { border-radius: 20px 0 0 20px; min-height: 300px; }
+        .featured .project-card-body { padding: 32px 36px; display: flex; flex-direction: column; justify-content: center; }
+        .featured .project-card-body h3 { font-size: 1.5rem; }
+        @media (max-width: 800px) {
+            .featured { grid-template-columns: 1fr; }
+            .featured .demo { border-radius: 20px 20px 0 0; min-height: 250px; }
         }
 
-        .project-card h3 {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 1.35rem;
-            letter-spacing: -0.01em;
-            margin-bottom: 10px;
-            transition: color 0.25s ease;
+        .gpt-demo { width: 100%; max-width: 400px; }
+        .gpt-screen { background: #fff; border: 1px solid #E4DAF9; border-radius: 14px; padding: 18px 20px; box-shadow: 0 6px 18px rgba(124,58,237,0.08); }
+        .gpt-text { font-size: 1rem; min-height: 56px; color: var(--ink); }
+        .gpt-caret { display: inline-block; width: 2px; height: 1.1em; background: var(--violet); vertical-align: text-bottom; margin-left: 2px; animation: blink 1s step-end infinite; }
+        .gpt-cands { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; min-height: 91px; }
+        .gpt-cand { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; }
+        .gpt-cand .tok {
+            font-weight: 600; min-width: 70px; padding: 3px 9px; border-radius: 8px;
+            background: var(--violet-soft); color: var(--violet); text-align: center;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
         }
-        .project-card:hover h3 { color: var(--accent); }
+        .gpt-cand.winner .tok { background: var(--violet); color: #fff; transform: scale(1.06); }
+        .gpt-cand .bar-track { display: block; flex: 1; height: 8px; background: #F1ECFB; border-radius: 999px; overflow: hidden; }
+        .gpt-cand .bar { display: block; height: 100%; width: 0; background: #C4B5FD; border-radius: 999px; transition: width 0.6s ease; }
+        .gpt-cand.winner .bar { background: var(--violet); }
+        .gpt-cand .pct { min-width: 38px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+        .gpt-label { font-size: 0.74rem; font-weight: 700; color: var(--violet); margin-top: 12px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.75; }
 
-        .project-card p {
-            color: var(--muted);
-            font-size: 0.92rem;
-            flex: 1;
-            margin-bottom: 20px;
+        /* BetterFriends coin */
+        .bf-demo { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+        .coin-stage { perspective: 700px; }
+        .coin { position: relative; width: 88px; height: 88px; transform-style: preserve-3d; transition: transform 1.4s cubic-bezier(0.3, 0.9, 0.35, 1); }
+        .coin-face {
+            position: absolute; inset: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.8rem; backface-visibility: hidden;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.12), 0 8px 20px rgba(217,119,6,0.28); border: 4px solid #B45309;
         }
-        .project-card p strong { color: var(--ink); font-weight: 500; }
+        .coin-face.heads { background: radial-gradient(circle at 35% 30%, #FDE68A, #F59E0B); color: #92400E; }
+        .coin-face.tails { background: radial-gradient(circle at 35% 30%, #FCD34D, #D97706); color: #78350F; transform: rotateY(180deg); }
+        .bf-result {
+            background: #fff; border: 1px solid #FDE1B8; border-radius: 999px; padding: 7px 16px;
+            font-size: 0.85rem; font-weight: 600; color: var(--amber); box-shadow: 0 4px 12px rgba(217,119,6,0.1);
+            transition: opacity 0.4s, transform 0.4s; white-space: nowrap;
+        }
+        .bf-result.hidden { opacity: 0; transform: translateY(6px); }
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        /* Setrix rest timer */
+        .sx-demo { display: flex; align-items: center; gap: 24px; }
+        .sx-ring-wrap { position: relative; width: 100px; height: 100px; }
+        .sx-ring-wrap svg { transform: rotate(-90deg); }
+        .sx-ring-bg { fill: none; stroke: #D3EFE2; stroke-width: 9; }
+        .sx-ring-fg { fill: none; stroke: var(--emerald); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 0.12s linear; }
+        .sx-time { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .sx-time .t { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--emerald); font-variant-numeric: tabular-nums; }
+        .sx-time .lbl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+        .sx-sets { display: flex; align-items: flex-end; gap: 9px; height: 88px; }
+        .sx-set { display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+        .sx-bar-track { width: 16px; height: 66px; background: #E2F3EA; border-radius: 6px; display: flex; align-items: flex-end; overflow: hidden; }
+        .sx-bar { width: 100%; height: 0%; background: var(--emerald); border-radius: 6px; transition: height 0.5s ease; }
+        .sx-set .n { font-size: 0.65rem; font-weight: 600; color: var(--muted); }
+
+        /* Class-Rate stars */
+        .cr-demo { width: 100%; max-width: 260px; }
+        .cr-card { background: #fff; border: 1px solid #CDE8F6; border-radius: 14px; padding: 16px 18px; box-shadow: 0 6px 18px rgba(2,132,199,0.08); }
+        .cr-course { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; margin-bottom: 9px; }
+        .cr-stars { display: flex; gap: 5px; margin-bottom: 11px; }
+        .cr-star { width: 22px; height: 22px; color: #DCEEF7; transition: color 0.2s, transform 0.2s; }
+        .cr-star.lit { color: #F59E0B; }
+        .cr-star.pop { transform: scale(1.3); }
+        .cr-review {
+            background: var(--sky-soft); color: var(--sky); font-size: 0.8rem; font-weight: 500; border-radius: 10px;
+            padding: 7px 11px; opacity: 0; transform: translateY(6px); transition: opacity 0.4s, transform 0.4s; min-height: 34px;
         }
-        .tags span {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--muted);
-            border: 1px solid var(--line);
-            padding: 3px 10px;
-            transition: color 0.25s ease, border-color 0.25s ease;
+        .cr-review.show { opacity: 1; transform: translateY(0); }
+
+        /* ML / Bayesian curve */
+        .ml-dot { fill: var(--teal); opacity: 0; animation: ml-pop 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+        @keyframes ml-pop { 0%, 8% { opacity: 0; transform: scale(0.4); } 14%, 88% { opacity: 1; transform: scale(1); } 96%, 100% { opacity: 0; } }
+        .ml-curve { fill: none; stroke: var(--teal); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 260; stroke-dashoffset: 260; animation: ml-draw 7s ease-in-out infinite; }
+        @keyframes ml-draw { 0%, 20% { stroke-dashoffset: 260; } 55%, 88% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 260; } }
+        .ml-band { fill: var(--teal); opacity: 0; animation: ml-fade 7s ease-in-out infinite; }
+        @keyframes ml-fade { 0%, 30% { opacity: 0; } 60%, 88% { opacity: 0.12; } 96%, 100% { opacity: 0; } }
+
+        /* Agentic AI pipeline */
+        .ai-demo { width: 100%; max-width: 300px; }
+        .ai-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+        .ai-node {
+            flex: 1; text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--rose);
+            background: #fff; border: 1.5px solid #FBC7D3; border-radius: 10px; padding: 10px 4px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .project-card:hover .tags span { border-color: rgba(236, 235, 230, 0.2); }
+        .ai-node.active { border-color: var(--rose); box-shadow: 0 0 0 4px rgba(225,29,72,0.12); }
+        .ai-track { position: relative; height: 2px; flex: 0 0 22px; background: #FBC7D3; overflow: visible; }
+        .ai-pulse { position: absolute; top: 50%; left: 0; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--rose); opacity: 0; }
+        .ai-status {
+            margin-top: 16px; text-align: center; font-size: 0.82rem; font-weight: 600; color: var(--rose);
+            background: var(--rose-soft); border-radius: 999px; padding: 7px 14px;
+        }
+
+        /* Unity / VR cube */
+        .un-demo { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .un-stage { width: 90px; height: 90px; perspective: 400px; }
+        .un-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: un-spin 6s linear infinite; }
+        .un-face {
+            position: absolute; width: 90px; height: 90px; background: rgba(79,70,229,0.12);
+            border: 2px solid var(--indigo); border-radius: 10px;
+        }
+        .un-face.front  { transform: translateZ(45px); }
+        .un-face.back   { transform: rotateY(180deg) translateZ(45px); }
+        .un-face.right  { transform: rotateY(90deg) translateZ(45px); }
+        .un-face.left   { transform: rotateY(-90deg) translateZ(45px); }
+        .un-face.top    { transform: rotateX(90deg) translateZ(45px); }
+        .un-face.bottom { transform: rotateX(-90deg) translateZ(45px); }
+        @keyframes un-spin { from { transform: rotateX(-18deg) rotateY(0deg); } to { transform: rotateX(-18deg) rotateY(360deg); } }
+        .un-caption {
+            font-size: 0.82rem; font-weight: 600; color: var(--indigo); background: var(--indigo-soft);
+            border-radius: 999px; padding: 7px 14px; transition: opacity 0.4s ease;
+        }
 
         /* ---------- Toolkit ---------- */
-        .toolkit {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .toolkit { display: flex; flex-wrap: wrap; gap: 10px; }
         .toolkit span {
-            font-family: var(--font-mono);
-            font-size: 0.82rem;
-            color: var(--muted);
-            border: 1px solid var(--line);
-            background: var(--surface);
-            padding: 9px 18px;
-            transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+            font-size: 0.85rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line);
+            background: var(--card); border-radius: 999px; padding: 9px 17px;
+            transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
         }
-        .toolkit span:hover {
-            color: var(--accent);
-            border-color: rgba(200, 241, 53, 0.4);
-            transform: translateY(-2px);
-        }
-        .toolkit-also {
-            margin-top: 24px;
-            color: var(--faint);
-        }
-        .toolkit-also b { color: var(--muted); font-weight: 500; }
+        .toolkit span:hover { color: var(--teal); border-color: #99E4DA; transform: translateY(-2px); }
+        .toolkit-also { margin-top: 20px; color: var(--faint); font-size: 0.88rem; }
+        .toolkit-also b { color: var(--muted); font-weight: 600; }
 
         /* ---------- Interests ---------- */
-        .interests-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .interest-card { padding: 26px; text-align: left; }
+        .interest-card h3 { font-weight: 700; font-size: 1.02rem; margin-bottom: 6px; margin-top: 14px; }
+        .interest-card p { color: var(--muted); font-size: 0.88rem; }
+
+        .golf-stage { width: 48px; height: 48px; position: relative; }
+        .golf-ball { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 1.5px solid var(--rose); bottom: 0; left: 4px; animation: golf-bounce 1.8s ease-in-out infinite; box-shadow: 0 2px 6px rgba(225,29,72,0.25), inset -2px -2px 0 rgba(0,0,0,0.06); }
+        @keyframes golf-bounce { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-22px); } 55% { transform: translateY(0); } 70% { transform: translateY(-8px); } 85% { transform: translateY(0); } }
+        .golf-flag { position: absolute; right: 4px; bottom: 0; width: 2px; height: 34px; background: var(--rose); }
+        .golf-flag::after { content: ''; position: absolute; top: 0; left: 2px; width: 12px; height: 9px; background: var(--rose); clip-path: polygon(0 0, 100% 20%, 0 100%); }
+
+        .travel-stage { width: 60px; height: 40px; position: relative; overflow: visible; }
+        .travel-path { stroke: #FBC7D3; stroke-width: 2; stroke-dasharray: 4 4; fill: none; }
+        .travel-plane { animation: travel-move 3.2s ease-in-out infinite; }
+        @keyframes travel-move {
+            0%   { transform: translate(0px, 18px) rotate(-6deg); }
+            50%  { transform: translate(30px, 2px) rotate(4deg); }
+            100% { transform: translate(0px, 18px) rotate(-6deg); }
         }
-        .interest-card {
-            padding: 28px;
-            text-align: left;
-        }
-        .interest-card svg {
-            width: 26px; height: 26px;
-            stroke: var(--accent);
-            margin-bottom: 16px;
-        }
-        .interest-card h3 {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 1.05rem;
-            margin-bottom: 6px;
-        }
-        .interest-card p { color: var(--muted); font-size: 0.9rem; }
 
         /* ---------- Contact ---------- */
-        .contact { text-align: center; padding-bottom: 64px; }
-        .contact .mono { color: var(--accent); }
-        .contact h2 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(2.2rem, 6vw, 3.6rem);
-            letter-spacing: -0.02em;
-            margin: 16px 0 18px;
-        }
-        .contact > .wrap > p {
-            color: var(--muted);
-            max-width: 520px;
-            margin: 0 auto 36px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 40px;
-        }
+        .contact { text-align: center; padding-bottom: 88px; }
+        .contact .kicker { font-weight: 700; color: var(--sky); }
+        .contact h2 { font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); margin: 14px 0 16px; }
+        .contact > .wrap > p { color: var(--muted); max-width: 520px; margin: 0 auto 34px; }
+        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
         .contact-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-mono);
-            font-size: 0.82rem;
-            color: var(--muted);
-            border: 1px solid var(--line);
-            padding: 11px 20px;
-            transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+            display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 0.88rem;
+            color: var(--muted); border: 1px solid var(--line); background: var(--card); border-radius: 999px;
+            padding: 11px 20px; transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
         }
-        .contact-links a:hover {
-            color: var(--accent);
-            border-color: rgba(200, 241, 53, 0.4);
-            transform: translateY(-2px);
-        }
+        .contact-links a:hover { color: var(--violet); border-color: #D8CBFA; transform: translateY(-2px); }
         .contact-links svg { width: 16px; height: 16px; }
 
         /* ---------- Footer ---------- */
-        footer {
-            border-top: 1px solid var(--line);
-            position: relative;
-            z-index: 1;
-        }
-        footer .wrap {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 12px;
-            padding-top: 28px;
-            padding-bottom: 28px;
-            color: var(--faint);
-        }
+        footer { border-top: 1px solid var(--line); }
+        footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 26px 24px; color: var(--faint); font-size: 0.88rem; }
 
-        /* ---------- Reveal on scroll (only hidden when JS is available) ---------- */
-        html.js .reveal {
-            opacity: 0;
-            transform: translateY(26px);
-            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-            transition-delay: var(--d, 0s);
-        }
-        html.js .reveal.in { opacity: 1; transform: translateY(0); }
+        /* ---------- Reveal on scroll ---------- */
+        html.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; transition-delay: var(--d, 0s); }
+        html.js .reveal.in { opacity: 1; transform: none; }
 
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after {
-                animation: none !important;
-                transition: none !important;
-            }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
             html.js .reveal { opacity: 1; transform: none; }
         }
 
         /* ---------- Responsive ---------- */
         @media (max-width: 900px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .featured { grid-column: 1 / -1; }
+            .xp-card { grid-template-columns: 1fr; }
+            .xp-demo { min-height: 190px; }
             .about-grid { grid-template-columns: 1fr; }
-            .about-side {
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: flex-start;
-            }
+            .about-side { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
             .edu-card { flex: 1; min-width: 260px; }
         }
-
         @media (max-width: 640px) {
-            section { padding: 72px 0; }
+            section { padding: 68px 0; }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
             .projects-grid, .interests-grid { grid-template-columns: 1fr; }
-            .xp-head { flex-direction: column; gap: 2px; }
-            .timeline { padding-left: 28px; }
-            .timeline li::before { left: -26px; }
-            .hero { padding-top: 80px; }
+            .featured { grid-template-columns: 1fr; }
+            .xp-head { flex-direction: column; gap: 12px; }
+            .xp-date { margin-top: 0; }
+            .timeline { padding-left: 26px; }
+            .timeline > li::before { left: -24px; }
+            .hero { padding-top: 90px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="wrap nav-bar">
-            <a href="#" class="logo"><b>vk</b>@portfolio:~$</a>
+            <a href="#top" class="logo">Varun<span>.</span></a>
             <nav class="nav-links" aria-label="Primary">
-                <a href="#about">/about</a>
-                <a href="#experience">/experience</a>
-                <a href="#projects">/projects</a>
-                <a href="#interests">/interests</a>
-                <a href="#contact">/contact</a>
-                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="resume-btn">resume.pdf ↓</a>
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#interests">Interests</a>
+                <a href="#contact">Contact</a>
+                <a href="VarunK26.pdf" target="_blank" rel="noopener" class="resume-btn">Resume ↓</a>
             </nav>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">menu</button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
         </div>
         <div class="mobile-menu" id="mobile-menu">
-            <a href="#about">/about</a>
-            <a href="#experience">/experience</a>
-            <a href="#projects">/projects</a>
-            <a href="#interests">/interests</a>
-            <a href="#contact">/contact</a>
-            <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener">resume.pdf ↓</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#interests">Interests</a>
+            <a href="#contact">Contact</a>
+            <a href="VarunK26.pdf" target="_blank" rel="noopener">Resume ↓</a>
         </div>
     </header>
 
@@ -741,42 +548,37 @@
 
         <!-- Hero -->
         <section class="hero wrap" id="top">
-            <p class="mono hero-kicker reveal">// software engineer — minneapolis, mn</p>
-            <h1 class="hero-name reveal" style="--d: 0.08s">
-                Varun
-                <span class="outline">Kollipara</span>
-            </h1>
-            <p class="hero-tagline reveal" style="--d: 0.16s">I build software people use.<span class="caret" aria-hidden="true"></span></p>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <p class="hero-kicker reveal">Hi, I'm Varun <span class="wave">👋</span> a software engineer in Minneapolis, MN</p>
+            <h1 class="hero-name reveal" style="--d: 0.08s">I build <span class="hl">software people use.</span></h1>
+            <p class="hero-tagline reveal" style="--d: 0.16s">From App Store apps to agentic AI systems<span class="caret" aria-hidden="true"></span></p>
             <p class="hero-sub reveal" style="--d: 0.24s">
-                Computer Science student at the <strong>University of Minnesota</strong> with experience across iOS, full-stack web, and AI.
+                Computer science grad from the <strong>University of Minnesota</strong> with experience across iOS, full-stack web, and AI.
                 Most recently I interned at <strong>Capgemini</strong>, building a full-stack agentic AI system with LangChain, FastAPI, and React.
             </p>
-            <div class="reveal" style="--d: 0.32s">
-                <span class="hero-status mono"><span class="dot"></span>open to new-grad SWE roles · summer 2027</span>
-            </div>
-            <div class="hero-actions reveal" style="--d: 0.4s">
-                <a href="#projects" class="btn btn-primary">view my work</a>
-                <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener" class="btn">
-                    download resume
+            <div class="hero-actions reveal" style="--d: 0.32s">
+                <a href="#projects" class="btn btn-primary">View my work</a>
+                <a href="VarunK26.pdf" target="_blank" rel="noopener" class="btn">
+                    Download resume
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </a>
             </div>
-            <p class="mono hero-scroll reveal" style="--d: 0.48s"><span class="tick"></span>scroll to explore</p>
         </section>
 
         <!-- About -->
         <section id="about">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="num">01</span>
-                    <h2>About</h2>
+                    <span class="num emerald-soft-bg emerald-text">About</span>
                     <span class="rule"></span>
                 </div>
                 <div class="about-grid">
                     <div class="about-text reveal">
                         <p>
-                            I'm a senior at the <strong>University of Minnesota, Twin Cities</strong>, finishing my B.S. in Computer Science
-                            (May 2026) with a 3.771 GPA in the College of Science &amp; Engineering. I'm an
+                            I graduated from the <strong>University of Minnesota, Twin Cities</strong> in May 2026 with a B.S. in
+                            Computer Science (3.82 GPA) from the College of Science &amp; Engineering. I'm an
                             <strong>AWS Certified Cloud Practitioner</strong>, and I've spent the last few years shipping real software,
                             from production iOS apps with global users to client websites and internal AI tools.
                         </p>
@@ -787,19 +589,19 @@
                             Bayesian optimization for molecular structure research.
                         </p>
                         <p>
-                            I'm currently looking for <strong>new-grad software engineering roles</strong> starting summer 2027.
+                            I'm currently looking for <strong>new-grad software engineering roles</strong>.
                         </p>
                     </div>
                     <div class="about-side reveal" style="--d: 0.12s">
                         <div class="portrait">
-                            <img src="images/profile.jpg" alt="Portrait of Varun Kollipara" width="220" height="220" loading="lazy">
+                            <img src="images/profile-web.jpg" alt="Portrait of Varun Kollipara" width="210" height="210" decoding="async">
                         </div>
-                        <div class="tick-card edu-card">
+                        <div class="card edu-card">
                             <p class="label">Education</p>
                             <p><strong>University of Minnesota</strong></p>
-                            <p>Twin Cities — College of Science &amp; Engineering</p>
+                            <p>Twin Cities · College of Science &amp; Engineering</p>
                             <p style="margin-top: 10px;">B.S., Computer Science</p>
-                            <p>Expected May 2026 · GPA 3.771 / 4.00</p>
+                            <p>Graduated May 2026 · GPA 3.82 / 4.00</p>
                             <hr>
                             <p class="label">Certification</p>
                             <p><strong>AWS Certified Cloud Practitioner</strong></p>
@@ -813,69 +615,161 @@
         <section id="experience">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="num">02</span>
-                    <h2>Experience</h2>
+                    <span class="num indigo-soft-bg indigo-text">Experience</span>
                     <span class="rule"></span>
                 </div>
                 <ol class="timeline">
 
-                    <li class="current reveal">
-                        <div class="tick-card xp-card">
-                            <div class="xp-head">
-                                <h3>Software Engineer Intern · <span>Capgemini</span></h3>
-                                <span class="mono xp-date">Jun 2025 — Jul 2025</span>
+                    <li class="reveal" style="--xp: var(--indigo)">
+                        <article class="card indigo xp-card">
+                            <div class="xp-demo indigo-soft-bg">
+                                <div class="kb-demo">
+                                    <div class="kb-cols">
+                                        <div class="kb-col"><div class="kb-title">To do</div><div id="kbTodo"></div></div>
+                                        <div class="kb-col"><div class="kb-title">Doing</div><div id="kbDoing"></div></div>
+                                        <div class="kb-col"><div class="kb-title">Done</div><div id="kbDone"><div class="kb-ticket on">VR demo ✓</div></div></div>
+                                    </div>
+                                    <div class="kb-status" id="kbStatus">Shipped ✓</div>
+                                </div>
                             </div>
-                            <p class="mono xp-loc">Cincinnati, OH</p>
+                            <div class="xp-body">
+                            <div class="xp-head">
+                                <div class="xp-id">
+                                    <span class="xp-logo indigo-soft-bg indigo-text" aria-hidden="true">C</span>
+                                    <div>
+                                        <h3>Software Engineer Intern · <span>Capgemini</span></h3>
+                                        <p class="xp-meta">Cincinnati, OH · Internship</p>
+                                    </div>
+                                </div>
+                                <span class="xp-date indigo-soft-bg indigo-text">Jun–Jul 2025</span>
+                            </div>
                             <ul>
                                 <li>Built a full-stack agentic AI system using <strong>LangChain</strong>, with a <strong>React</strong> frontend and a <strong>FastAPI</strong> backend.</li>
                                 <li>Shipped cross-platform mobile apps with <strong>React Native</strong> and <strong>Flutter</strong>.</li>
                                 <li>Built a 2D game and a 3D VR experience in <strong>Unity</strong>.</li>
                                 <li>Worked across diverse stacks under tight deadlines to deliver polished, functional software.</li>
                             </ul>
-                        </div>
+                            <div class="tags xp-tags">
+                                <span class="indigo-soft-bg indigo-text">LangChain</span>
+                                <span class="indigo-soft-bg indigo-text">FastAPI</span>
+                                <span class="indigo-soft-bg indigo-text">React</span>
+                                <span class="indigo-soft-bg indigo-text">React Native</span>
+                                <span class="indigo-soft-bg indigo-text">Flutter</span>
+                                <span class="indigo-soft-bg indigo-text">Unity</span>
+                            </div>
+                            </div>
+                        </article>
                     </li>
 
-                    <li class="current reveal">
-                        <div class="tick-card xp-card">
-                            <div class="xp-head">
-                                <h3>Full Stack Developer · <span>PRSM</span></h3>
-                                <span class="mono xp-date">Jun 2023 — Aug 2024</span>
+                    <li class="reveal" style="--xp: var(--sky); --d: 0.06s">
+                        <article class="card sky xp-card">
+                            <div class="xp-demo sky-soft-bg">
+                                <div class="wb-demo">
+                                    <div class="wb-window">
+                                        <div class="wb-bar"><span></span><span></span><span></span></div>
+                                        <div class="wb-canvas" id="wbCanvas">
+                                            <div class="wb-el wb-nav on"></div>
+                                            <div class="wb-el wb-hero on"></div>
+                                            <div class="wb-el wb-line1 on"></div>
+                                            <div class="wb-el wb-line2 on"></div>
+                                            <div class="wb-el wb-cta on"></div>
+                                        </div>
+                                    </div>
+                                    <div class="wb-status" id="wbStatus">Shipped ✓</div>
+                                </div>
                             </div>
-                            <p class="mono xp-loc">Eden Prairie, MN</p>
+                            <div class="xp-body">
+                            <div class="xp-head">
+                                <div class="xp-id">
+                                    <span class="xp-logo sky-soft-bg sky-text" aria-hidden="true">P</span>
+                                    <div>
+                                        <h3>Full Stack Developer · <span>PRSM</span></h3>
+                                        <p class="xp-meta">Eden Prairie, MN</p>
+                                    </div>
+                                </div>
+                                <span class="xp-date sky-soft-bg sky-text">Jun 2023 – Aug 2024</span>
+                            </div>
                             <ul>
                                 <li>Led a small team designing and developing dynamic websites in <strong>JavaScript</strong> and <strong>Next.js</strong>.</li>
                                 <li>Worked directly with clients to translate evolving requirements into shipped product.</li>
                                 <li>Drove high client satisfaction across multiple successful launches.</li>
                             </ul>
-                        </div>
+                            <div class="tags xp-tags">
+                                <span class="sky-soft-bg sky-text">JavaScript</span>
+                                <span class="sky-soft-bg sky-text">Next.js</span>
+                                <span class="sky-soft-bg sky-text">Client work</span>
+                            </div>
+                            </div>
+                        </article>
                     </li>
 
-                    <li class="reveal">
-                        <div class="tick-card xp-card">
-                            <div class="xp-head">
-                                <h3>Assistant Teacher · <span>Tech Academy</span></h3>
-                                <span class="mono xp-date">Jun 2021 — Aug 2022</span>
+                    <li class="reveal" style="--xp: var(--amber); --d: 0.12s">
+                        <article class="card amber xp-card">
+                            <div class="xp-demo amber-soft-bg">
+                                <div class="km-demo">
+                                    <div class="km-sheet" id="kmSheet">
+                                        <div class="km-row done"><span class="km-q">12 + 9 =</span><span class="km-a">21</span><span class="km-check">✓</span></div>
+                                        <div class="km-row done"><span class="km-q">8 × 7 =</span><span class="km-a">56</span><span class="km-check">✓</span></div>
+                                        <div class="km-row done"><span class="km-q">45 ÷ 5 =</span><span class="km-a">9</span><span class="km-check">✓</span></div>
+                                        <div class="km-grade on" id="kmGrade">100%! Great work ⭐</div>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="mono xp-loc">Little Canada, MN</p>
-                            <ul>
-                                <li>Taught young learners coding fundamentals, primarily in <strong>Python</strong>.</li>
-                                <li>Stepped into a lead instructor role when needed, independently guiding classes and mentoring students.</li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="reveal">
-                        <div class="tick-card xp-card">
+                            <div class="xp-body">
                             <div class="xp-head">
-                                <h3>Teacher · <span>Kumon</span></h3>
-                                <span class="mono xp-date">Aug 2019 — Aug 2023</span>
+                                <div class="xp-id">
+                                    <span class="xp-logo amber-soft-bg amber-text" aria-hidden="true">K</span>
+                                    <div>
+                                        <h3>Teacher · <span>Kumon</span></h3>
+                                        <p class="xp-meta">Bloomington, MN</p>
+                                    </div>
+                                </div>
+                                <span class="xp-date amber-soft-bg amber-text">Aug 2019 – Aug 2023</span>
                             </div>
-                            <p class="mono xp-loc">Bloomington, MN</p>
                             <ul>
                                 <li>Supported K–12 students with personalized math and reading instruction.</li>
                                 <li>Graded assignments and gave constructive feedback to keep learners on track.</li>
                             </ul>
-                        </div>
+                            <div class="tags xp-tags">
+                                <span class="amber-soft-bg amber-text">Teaching</span>
+                                <span class="amber-soft-bg amber-text">K–12</span>
+                            </div>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li class="reveal" style="--xp: var(--rose); --d: 0.18s">
+                        <article class="card rose xp-card">
+                            <div class="xp-demo rose-soft-bg">
+                                <div class="ta-demo">
+                                    <div class="ta-editor">
+                                        <div class="ta-bar"><span></span><span></span><span></span></div>
+                                        <pre class="ta-code" id="taCode">print("Hello, class!")</pre>
+                                        <div class="ta-out on" id="taOut">&gt;&gt;&gt; Hello, class!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="xp-body">
+                            <div class="xp-head">
+                                <div class="xp-id">
+                                    <span class="xp-logo rose-soft-bg rose-text" aria-hidden="true">T</span>
+                                    <div>
+                                        <h3>Assistant Teacher · <span>Tech Academy</span></h3>
+                                        <p class="xp-meta">Little Canada, MN</p>
+                                    </div>
+                                </div>
+                                <span class="xp-date rose-soft-bg rose-text">Jun 2021 – Aug 2022</span>
+                            </div>
+                            <ul>
+                                <li>Taught young learners coding fundamentals, primarily in <strong>Python</strong>.</li>
+                                <li>Stepped into a lead instructor role when needed, independently guiding classes and mentoring students.</li>
+                            </ul>
+                            <div class="tags xp-tags">
+                                <span class="rose-soft-bg rose-text">Python</span>
+                                <span class="rose-soft-bg rose-text">Teaching</span>
+                            </div>
+                            </div>
+                        </article>
                     </li>
 
                 </ol>
@@ -886,99 +780,222 @@
         <section id="projects">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="num">03</span>
-                    <h2>Projects</h2>
+                    <span class="num amber-soft-bg amber-text">Projects</span>
                     <span class="rule"></span>
                 </div>
                 <div class="projects-grid">
 
-                    <article class="tick-card project-card reveal">
-                        <div class="project-top">
-                            <span class="project-index">001</span>
-                            <span class="project-badge">Live · App Store</span>
+                    <!-- Featured: Transformer Visualizer -->
+                    <article class="card violet featured reveal">
+                        <div class="demo violet-soft-bg">
+                            <div class="gpt-demo">
+                                <div class="gpt-screen">
+                                    <div class="gpt-text"><span id="gptOut">To be, or not to</span><span class="gpt-caret"></span></div>
+                                    <div class="gpt-cands" id="gptCands"></div>
+                                    <div class="gpt-label">Predicting the next token…</div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>BetterFriends</h3>
-                        <p>
-                            A social iOS app I developed and scaled to <strong>100+ monthly active users across 10+ countries</strong>.
-                            Built on a Supabase + PostgreSQL backend to manage global user data and interactions with high availability and performance.
-                        </p>
-                        <div class="tags">
-                            <span>SwiftUI</span><span>Supabase</span><span>PostgreSQL</span><span>iOS</span>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">Featured</span>
+                                <span class="project-badge violet-soft-bg violet-text">My favorite build</span>
+                            </div>
+                            <h3>How an AI Actually Works</h3>
+                            <p>An end-to-end, interactive walkthrough of how a GPT-style model works, powered by a small transformer built from scratch and trained on the complete works of Shakespeare. Watch it tokenize, embed, pay attention, and generate text live in your browser.</p>
+                            <div class="tags">
+                                <span class="violet-soft-bg violet-text">Next.js</span>
+                                <span class="violet-soft-bg violet-text">TypeScript</span>
+                                <span class="violet-soft-bg violet-text">Transformers</span>
+                            </div>
                         </div>
-                    </article>
-
-                    <article class="tick-card project-card reveal" style="--d: 0.08s">
-                        <div class="project-top">
-                            <span class="project-index">002</span>
-                            <span class="project-badge">Live · App Store</span>
-                        </div>
-                        <h3>ClassRate</h3>
-                        <p>
-                            An iOS app that lets students rate and review their classes. Architected the platform from initial development
-                            through App Store launch, leveraging CloudKit for data sync and iterating on features based on user metrics and review feedback.
-                        </p>
-                        <div class="tags">
-                            <span>SwiftUI</span><span>CloudKit</span><span>iOS</span>
-                        </div>
-                    </article>
-
-                    <article class="tick-card project-card reveal" style="--d: 0.16s">
-                        <div class="project-top">
-                            <span class="project-index">003</span>
-                            <span class="project-badge">Live · App Store</span>
-                        </div>
-                        <h3>Setrix</h3>
-                        <p>
-                            A workout tracker for iOS featuring set logging, calendar-based history, and interactive progress visualizations
-                            powered by Swift Charts. Uses CloudKit to keep data in sync across devices.
-                        </p>
-                        <div class="tags">
-                            <span>SwiftUI</span><span>Swift Charts</span><span>CloudKit</span>
+                        <div style="grid-column: 1 / -1; padding: 0 36px 30px;">
+                            <a class="btn btn-primary" href="https://transformer-visualizer-silk.vercel.app/" target="_blank" rel="noopener" style="display: inline-flex;">Try it live ↗</a>
                         </div>
                     </article>
 
-                    <article class="tick-card project-card reveal">
-                        <div class="project-top">
-                            <span class="project-index">004</span>
-                            <span class="project-badge alt">Research · 2024</span>
+                    <!-- BetterFriends -->
+                    <article class="card amber reveal">
+                        <div class="demo amber-soft-bg">
+                            <div class="bf-demo">
+                                <div class="coin-stage">
+                                    <div class="coin" id="bfCoin">
+                                        <div class="coin-face heads">H</div>
+                                        <div class="coin-face tails">T</div>
+                                    </div>
+                                </div>
+                                <div class="bf-result" id="bfResult">Flipping…</div>
+                            </div>
                         </div>
-                        <h3>ML &amp; Bayesian Optimization</h3>
-                        <p>
-                            Research at the University of Minnesota on machine learning and Bayesian optimization, exploring theoretical
-                            foundations and applications to problems like molecular structure optimization and complex system tuning.
-                        </p>
-                        <div class="tags">
-                            <span>Python</span><span>Machine Learning</span><span>Bayesian Opt.</span>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">001</span>
+                                <span class="project-badge amber-soft-bg amber-text">Live · App Store</span>
+                            </div>
+                            <h3>BetterFriends</h3>
+                            <p>A social iOS app I developed and scaled to <strong>150+ users across 10+ countries</strong>. Built on a Supabase + PostgreSQL backend to manage global user data and interactions with high availability and performance.</p>
+                            <div class="tags">
+                                <span class="amber-soft-bg amber-text">SwiftUI</span>
+                                <span class="amber-soft-bg amber-text">Supabase</span>
+                                <span class="amber-soft-bg amber-text">PostgreSQL</span>
+                            </div>
+                            <a class="project-link amber-text" href="https://apps.apple.com/us/app/betterfriends-wager-settle/id6754656816" target="_blank" rel="noopener">Get it on the App Store ↗</a>
                         </div>
                     </article>
 
-                    <article class="tick-card project-card reveal" style="--d: 0.08s">
-                        <div class="project-top">
-                            <span class="project-index">005</span>
-                            <span class="project-badge alt">Capgemini</span>
+                    <!-- ClassRate -->
+                    <article class="card sky reveal" style="--d: 0.06s">
+                        <div class="demo sky-soft-bg">
+                            <div class="cr-demo">
+                                <div class="cr-card">
+                                    <div class="cr-course" id="crCourse">AP Computer Science</div>
+                                    <div class="cr-stars" id="crStars">
+                                        <svg class="cr-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.85.74-5.1 4.63 1.4 6.75L12 16.9l-6.05 3.48 1.4-6.75-5.1-4.63 6.85-.74z"/></svg>
+                                        <svg class="cr-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.85.74-5.1 4.63 1.4 6.75L12 16.9l-6.05 3.48 1.4-6.75-5.1-4.63 6.85-.74z"/></svg>
+                                        <svg class="cr-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.85.74-5.1 4.63 1.4 6.75L12 16.9l-6.05 3.48 1.4-6.75-5.1-4.63 6.85-.74z"/></svg>
+                                        <svg class="cr-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.85.74-5.1 4.63 1.4 6.75L12 16.9l-6.05 3.48 1.4-6.75-5.1-4.63 6.85-.74z"/></svg>
+                                        <svg class="cr-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.85.74-5.1 4.63 1.4 6.75L12 16.9l-6.05 3.48 1.4-6.75-5.1-4.63 6.85-.74z"/></svg>
+                                    </div>
+                                    <div class="cr-review" id="crReview">"Great teacher, take it!"</div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Agentic AI System</h3>
-                        <p>
-                            A full-stack agentic AI system built during my internship at Capgemini. React frontend, FastAPI backend,
-                            and a LangChain orchestration layer driving multi-step reasoning for internal tooling.
-                        </p>
-                        <div class="tags">
-                            <span>LangChain</span><span>FastAPI</span><span>React</span><span>Python</span>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">002</span>
+                                <span class="project-badge sky-soft-bg sky-text">Live · App Store</span>
+                            </div>
+                            <h3>ClassRate</h3>
+                            <p>An iOS app that lets students rate and review their classes. Architected the platform from initial development through App Store launch, leveraging CloudKit for data sync and iterating on features based on user metrics and review feedback.</p>
+                            <div class="tags">
+                                <span class="sky-soft-bg sky-text">SwiftUI</span>
+                                <span class="sky-soft-bg sky-text">CloudKit</span>
+                            </div>
+                            <a class="project-link sky-text" href="https://apps.apple.com/us/app/class-rate/id1626881530" target="_blank" rel="noopener">Get it on the App Store ↗</a>
                         </div>
                     </article>
 
-                    <article class="tick-card project-card reveal" style="--d: 0.16s">
-                        <div class="project-top">
-                            <span class="project-index">006</span>
-                            <span class="project-badge alt">Capgemini</span>
+                    <!-- Setrix -->
+                    <article class="card emerald reveal" style="--d: 0.12s">
+                        <div class="demo emerald-soft-bg">
+                            <div class="sx-demo">
+                                <div class="sx-ring-wrap">
+                                    <svg width="100" height="100" viewBox="0 0 100 100">
+                                        <circle class="sx-ring-bg" cx="50" cy="50" r="42"></circle>
+                                        <circle class="sx-ring-fg" id="sxRing" cx="50" cy="50" r="42"></circle>
+                                    </svg>
+                                    <div class="sx-time"><span class="t" id="sxTime">0:30</span><span class="lbl">Rest</span></div>
+                                </div>
+                                <div class="sx-sets" id="sxSets">
+                                    <div class="sx-set"><div class="sx-bar-track"><div class="sx-bar"></div></div><span class="n">S1</span></div>
+                                    <div class="sx-set"><div class="sx-bar-track"><div class="sx-bar"></div></div><span class="n">S2</span></div>
+                                    <div class="sx-set"><div class="sx-bar-track"><div class="sx-bar"></div></div><span class="n">S3</span></div>
+                                    <div class="sx-set"><div class="sx-bar-track"><div class="sx-bar"></div></div><span class="n">S4</span></div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Unity Games &amp; VR</h3>
-                        <p>
-                            Designed and built a 2D Unity game and a 3D VR experience as part of an internship rotation, picking up new
-                            tooling, scripting in C#, and shipping playable demos within tight timelines.
-                        </p>
-                        <div class="tags">
-                            <span>Unity</span><span>C#</span><span>VR</span>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">003</span>
+                                <span class="project-badge emerald-soft-bg emerald-text">Live · App Store</span>
+                            </div>
+                            <h3>Setrix</h3>
+                            <p>A workout tracker for iOS featuring set logging, calendar-based history, and interactive progress visualizations powered by Swift Charts. Uses CloudKit to keep data in sync across devices.</p>
+                            <div class="tags">
+                                <span class="emerald-soft-bg emerald-text">SwiftUI</span>
+                                <span class="emerald-soft-bg emerald-text">Swift Charts</span>
+                                <span class="emerald-soft-bg emerald-text">CloudKit</span>
+                            </div>
+                            <a class="project-link emerald-text" href="https://apps.apple.com/us/app/setrix/id6742694566" target="_blank" rel="noopener">Get it on the App Store ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- ML & Bayesian Optimization -->
+                    <article class="card teal reveal">
+                        <div class="demo teal-soft-bg">
+                            <svg width="220" height="140" viewBox="0 0 240 150">
+                                <line x1="30" y1="125" x2="215" y2="125" stroke="#B8DDD8" stroke-width="2"/>
+                                <line x1="30" y1="125" x2="30" y2="20" stroke="#B8DDD8" stroke-width="2"/>
+                                <path class="ml-band" d="M30 90 C 70 40, 110 105, 150 60 C 175 35, 200 55, 215 45 L 215 85 C 200 95, 175 75, 150 100 C 110 140, 70 75, 30 115 Z"/>
+                                <path class="ml-curve" d="M30 102 C 70 58, 110 122, 150 80 C 175 55, 200 65, 215 65"/>
+                                <circle class="ml-dot" cx="52" cy="80" r="5" style="animation-delay: 0.2s"/>
+                                <circle class="ml-dot" cx="95" cy="108" r="5" style="animation-delay: 0.7s"/>
+                                <circle class="ml-dot" cx="150" cy="80" r="5" style="animation-delay: 1.2s"/>
+                                <circle class="ml-dot" cx="192" cy="64" r="5" style="animation-delay: 1.7s"/>
+                            </svg>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">004</span>
+                                <span class="project-badge teal-soft-bg teal-text">Research · 2024</span>
+                            </div>
+                            <h3>ML &amp; Bayesian Optimization</h3>
+                            <p>Research at the University of Minnesota on machine learning and Bayesian optimization, exploring theoretical foundations and applications to problems like molecular structure optimization and complex system tuning.</p>
+                            <div class="tags">
+                                <span class="teal-soft-bg teal-text">Python</span>
+                                <span class="teal-soft-bg teal-text">Bayesian Opt.</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Agentic AI System -->
+                    <article class="card rose reveal" style="--d: 0.06s">
+                        <div class="demo rose-soft-bg">
+                            <div class="ai-demo">
+                                <div class="ai-row">
+                                    <div class="ai-node" id="aiNode1">React UI</div>
+                                    <div class="ai-track"><div class="ai-pulse" id="aiPulse1"></div></div>
+                                    <div class="ai-node" id="aiNode2">FastAPI</div>
+                                    <div class="ai-track"><div class="ai-pulse" id="aiPulse2"></div></div>
+                                    <div class="ai-node" id="aiNode3">LangChain</div>
+                                </div>
+                                <div class="ai-status" id="aiStatus">Routing request…</div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">005</span>
+                                <span class="project-badge rose-soft-bg rose-text">Capgemini</span>
+                            </div>
+                            <h3>Agentic AI System</h3>
+                            <p>A full-stack agentic AI system built during my internship at Capgemini. React frontend, FastAPI backend, and a LangChain orchestration layer driving multi-step reasoning for internal tooling.</p>
+                            <div class="tags">
+                                <span class="rose-soft-bg rose-text">LangChain</span>
+                                <span class="rose-soft-bg rose-text">FastAPI</span>
+                                <span class="rose-soft-bg rose-text">React</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Unity Games & VR -->
+                    <article class="card indigo reveal" style="--d: 0.12s">
+                        <div class="demo indigo-soft-bg">
+                            <div class="un-demo">
+                                <div class="un-stage">
+                                    <div class="un-cube">
+                                        <div class="un-face front"></div>
+                                        <div class="un-face back"></div>
+                                        <div class="un-face right"></div>
+                                        <div class="un-face left"></div>
+                                        <div class="un-face top"></div>
+                                        <div class="un-face bottom"></div>
+                                    </div>
+                                </div>
+                                <div class="un-caption" id="unCaption">Prototyping in Unity…</div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">006</span>
+                                <span class="project-badge indigo-soft-bg indigo-text">Capgemini</span>
+                            </div>
+                            <h3>Unity Games &amp; VR</h3>
+                            <p>Designed and built a 2D Unity game and a 3D VR experience as part of an internship rotation, picking up new tooling, scripting in C#, and shipping playable demos within tight timelines.</p>
+                            <div class="tags">
+                                <span class="indigo-soft-bg indigo-text">Unity</span>
+                                <span class="indigo-soft-bg indigo-text">C#</span>
+                                <span class="indigo-soft-bg indigo-text">VR</span>
+                            </div>
                         </div>
                     </article>
 
@@ -990,8 +1007,7 @@
         <section id="toolkit">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="num">04</span>
-                    <h2>Toolkit</h2>
+                    <span class="num teal-soft-bg teal-text">Toolkit</span>
                     <span class="rule"></span>
                 </div>
                 <div class="toolkit reveal">
@@ -1006,7 +1022,7 @@
                     <span>Git</span>
                     <span>Unity</span>
                 </div>
-                <p class="mono toolkit-also reveal" style="--d: 0.1s">
+                <p class="toolkit-also reveal" style="--d: 0.1s">
                     <b>also:</b> LangChain · FastAPI · React Native · Flutter · Swift Charts · CloudKit · Supabase · Excel · CAD
                 </p>
             </div>
@@ -1016,23 +1032,34 @@
         <section id="interests">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="num">05</span>
-                    <h2>Outside of code</h2>
+                    <span class="num rose-soft-bg rose-text">Outside of code</span>
                     <span class="rule"></span>
                 </div>
                 <div class="interests-grid">
-                    <div class="tick-card interest-card reveal">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18v-15"/><path d="M12 3l7 3.5-7 3.5"/><circle cx="12" cy="20" r="1.6"/></svg>
+                    <div class="card interest-card reveal">
+                        <div class="golf-stage"><div class="golf-flag"></div><div class="golf-ball"></div></div>
                         <h3>Golf</h3>
                         <p>Chasing fairways and the occasional birdie whenever the Minnesota weather allows.</p>
                     </div>
-                    <div class="tick-card interest-card reveal" style="--d: 0.08s">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14.5 14.5 0 0 1 0 18a14.5 14.5 0 0 1 0-18"/></svg>
+                    <div class="card interest-card reveal" style="--d: 0.08s">
+                        <svg class="travel-stage" viewBox="0 0 60 40">
+                            <path class="travel-path" d="M2 22 Q 30 -4 58 22"/>
+                            <text class="travel-plane" x="0" y="0" font-size="18">✈️</text>
+                        </svg>
                         <h3>Traveling</h3>
-                        <p>Exploring new places and cultures — always planning the next trip.</p>
+                        <p>Exploring new places and cultures. Always planning the next trip.</p>
                     </div>
-                    <div class="tick-card interest-card reveal" style="--d: 0.16s">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="9" rx="4.5"/><path d="M8 12.5v3M6.5 14h3"/><path d="M15.5 13h.01M17.5 15h.01"/></svg>
+                    <div class="card interest-card reveal" style="--d: 0.16s">
+                        <div class="un-stage" style="width: 40px; height: 40px;">
+                            <div class="un-cube" style="animation-duration: 4s;">
+                                <div class="un-face front" style="width: 40px; height: 40px; transform: translateZ(20px);"></div>
+                                <div class="un-face back" style="width: 40px; height: 40px; transform: rotateY(180deg) translateZ(20px);"></div>
+                                <div class="un-face right" style="width: 40px; height: 40px; transform: rotateY(90deg) translateZ(20px);"></div>
+                                <div class="un-face left" style="width: 40px; height: 40px; transform: rotateY(-90deg) translateZ(20px);"></div>
+                                <div class="un-face top" style="width: 40px; height: 40px; transform: rotateX(90deg) translateZ(20px);"></div>
+                                <div class="un-face bottom" style="width: 40px; height: 40px; transform: rotateX(-90deg) translateZ(20px);"></div>
+                            </div>
+                        </div>
                         <h3>Unity side projects</h3>
                         <p>The occasional game prototype when an idea is too fun not to build.</p>
                     </div>
@@ -1043,31 +1070,31 @@
         <!-- Contact -->
         <section id="contact" class="contact">
             <div class="wrap">
-                <p class="mono reveal">06 — contact</p>
+                <p class="kicker reveal">Contact</p>
                 <h2 class="reveal" style="--d: 0.08s">Let's get in touch.</h2>
                 <p class="reveal" style="--d: 0.16s">
                     I'm currently looking for new-grad software engineering roles and open to interesting collaborations.
-                    The fastest way to reach me is email, I'll respond within a day or two.
+                    The fastest way to reach me is email. I'll respond within a day or two.
                 </p>
                 <div class="reveal" style="--d: 0.24s">
-                    <a href="mailto:varunkollipara11@gmail.com" class="btn btn-primary">say hello →</a>
+                    <a href="mailto:varunkollipara11@gmail.com" class="btn btn-primary">Say hello →</a>
                 </div>
                 <div class="contact-links reveal" style="--d: 0.32s">
                     <a href="https://github.com/VarunKollipara" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                        github
+                        GitHub
                     </a>
                     <a href="https://www.linkedin.com/in/varun-kollipara-509968240/" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
-                        linkedin
+                        LinkedIn
                     </a>
                     <a href="mailto:varunkollipara11@gmail.com">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-                        email
+                        Email
                     </a>
-                    <a href="Varun_Kollipara_Resume.pdf" target="_blank" rel="noopener">
+                    <a href="VarunK26.pdf" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                        resume
+                        Resume
                     </a>
                 </div>
             </div>
@@ -1075,28 +1102,56 @@
 
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="wrap mono">
+        <div class="wrap">
             <p>Designed &amp; built by Varun Kollipara · © 2026</p>
-            <p>made in minneapolis_</p>
+            <p>made in minneapolis</p>
         </div>
     </footer>
 
     <script>
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         // Mobile menu
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => {
             const open = mobileMenu.classList.toggle('open');
             menuToggle.setAttribute('aria-expanded', open);
-            menuToggle.textContent = open ? 'close' : 'menu';
+            menuToggle.textContent = open ? 'Close' : 'Menu';
         });
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
                 menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.textContent = 'menu';
+                menuToggle.textContent = 'Menu';
+            });
+        });
+
+        // In-page navigation: animate scroll manually. Native smooth scrolling
+        // is unreliable in some embedded webviews and can be cut short by
+        // layout shifts, so we drive it with a simple timer loop instead.
+        function smoothScrollTo(y) {
+            if (reducedMotion) { window.scrollTo({ top: y, behavior: 'instant' }); return; }
+            const start = window.scrollY;
+            const dist = y - start;
+            if (dist === 0) return;
+            const dur = Math.min(900, 350 + Math.abs(dist) * 0.1);
+            const t0 = performance.now();
+            const iv = setInterval(() => {
+                const p = Math.min(1, (performance.now() - t0) / dur);
+                const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+                window.scrollTo({ top: start + dist * ease, behavior: 'instant' });
+                if (p >= 1) clearInterval(iv);
+            }, 16);
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+                const href = a.getAttribute('href');
+                const target = href === '#' ? null : document.querySelector(href);
+                smoothScrollTo(target ? target.getBoundingClientRect().top + window.scrollY - 68 : 0);
             });
         });
 
@@ -1109,10 +1164,9 @@
                 }
             });
         }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Scrollspy for nav links
+        // Scrollspy
         const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
         const spyObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1123,11 +1177,341 @@
                 }
             });
         }, { rootMargin: '-40% 0px -55% 0px' });
-
         ['about', 'experience', 'projects', 'interests', 'contact'].forEach(id => {
             const el = document.getElementById(id);
             if (el) spyObserver.observe(el);
         });
+
+        // Only run a demo loop once its card is on screen
+        function whenVisible(el, start) {
+            if (reducedMotion) return;
+            const obs = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) { start(); obs.disconnect(); }
+            }, { threshold: 0.3 });
+            obs.observe(el);
+        }
+
+        /* ---------- GPT next-token demo ---------- */
+        const gptSteps = [
+            { next: 'be',        cands: [['be', 62], ['do', 21], ['go', 9]] },
+            { next: ',',         cands: [[',', 71], ['.', 15], [';', 8]] },
+            { next: 'that',      cands: [['that', 58], ['this', 24], ['what', 11]] },
+            { next: 'is',        cands: [['is', 66], ['was', 19], ['be', 7]] },
+            { next: 'the',       cands: [['the', 74], ['a', 13], ['my', 6]] },
+            { next: 'question',  cands: [['question', 81], ['answer', 9], ['matter', 5]] },
+        ];
+        const gptBase = 'To be, or not to';
+        const gptOut = document.getElementById('gptOut');
+        const gptCands = document.getElementById('gptCands');
+
+        function renderCands(cands) {
+            gptCands.innerHTML = cands.map(([tok, pct]) => `
+                <div class="gpt-cand">
+                    <span class="tok">${tok}</span>
+                    <span class="bar-track"><span class="bar" data-w="${pct}"></span></span>
+                    <span class="pct">${pct}%</span>
+                </div>`).join('');
+            setTimeout(() => {
+                gptCands.querySelectorAll('.bar').forEach(b => b.style.width = b.dataset.w + '%');
+            }, 40);
+        }
+
+        function runGpt() {
+            let i = 0;
+            let text = gptBase;
+            function step() {
+                const s = gptSteps[i];
+                renderCands(s.cands);
+                setTimeout(() => {
+                    const rows = gptCands.querySelectorAll('.gpt-cand');
+                    if (rows[0]) rows[0].classList.add('winner');
+                    setTimeout(() => {
+                        text += (s.next === ',' ? '' : ' ') + s.next;
+                        gptOut.textContent = text;
+                        i++;
+                        if (i >= gptSteps.length) {
+                            i = 0;
+                            setTimeout(() => { text = gptBase; gptOut.textContent = text; step(); }, 2400);
+                        } else {
+                            setTimeout(step, 500);
+                        }
+                    }, 700);
+                }, 900);
+            }
+            step();
+        }
+        if (gptOut) whenVisible(gptOut, runGpt);
+
+        /* ---------- BetterFriends coin flip ---------- */
+        const coin = document.getElementById('bfCoin');
+        const bfResult = document.getElementById('bfResult');
+        const bfOutcomes = [
+            ['Heads! Maya wins $10 🎉', true],
+            ['Tails! Jordan wins $5 😅', false],
+            ['Heads! You win $20 🤑', true],
+            ['Tails. Double or nothing?', false],
+        ];
+        function runCoin() {
+            let rotation = 0;
+            let idx = 0;
+            function flip() {
+                bfResult.classList.add('hidden');
+                const [label, heads] = bfOutcomes[idx % bfOutcomes.length];
+                idx++;
+                rotation += 1080 + (((rotation % 360 === 0) === heads) ? 0 : 180);
+                coin.style.transform = `rotateY(${rotation}deg)`;
+                setTimeout(() => {
+                    bfResult.textContent = label;
+                    bfResult.classList.remove('hidden');
+                }, 1450);
+                setTimeout(flip, 4200);
+            }
+            flip();
+        }
+        if (coin) whenVisible(coin, runCoin);
+
+        /* ---------- Setrix rest timer + sets ---------- */
+        const sxRing = document.getElementById('sxRing');
+        const sxTime = document.getElementById('sxTime');
+        const sxBars = document.querySelectorAll('#sxSets .sx-bar');
+        if (sxRing) {
+            const SX_CIRC = 2 * Math.PI * 42;
+            sxRing.style.strokeDasharray = SX_CIRC;
+            sxRing.style.strokeDashoffset = 0;
+
+            function runSetrix() {
+                let setIdx = 0;
+                const TOTAL = 30;
+                const TICK_MS = 110;
+                function rest() {
+                    let t = TOTAL;
+                    const iv = setInterval(() => {
+                        t--;
+                        sxTime.textContent = '0:' + String(t).padStart(2, '0');
+                        sxRing.style.strokeDashoffset = SX_CIRC * (1 - t / TOTAL);
+                        if (t <= 0) {
+                            clearInterval(iv);
+                            if (setIdx < sxBars.length) {
+                                sxBars[setIdx].style.height = (60 + setIdx * 13) + '%';
+                                setIdx++;
+                            }
+                            setTimeout(() => {
+                                if (setIdx >= sxBars.length) {
+                                    setIdx = 0;
+                                    sxBars.forEach(b => b.style.height = '0%');
+                                }
+                                sxTime.textContent = '0:30';
+                                sxRing.style.strokeDashoffset = 0;
+                                setTimeout(rest, 600);
+                            }, 900);
+                        }
+                    }, TICK_MS);
+                }
+                rest();
+            }
+            whenVisible(sxRing, runSetrix);
+        }
+
+        /* ---------- Class-Rate stars ---------- */
+        const crCourses = [
+            ['AP Computer Science', 5, '"Great teacher, take it!"'],
+            ['AP Statistics', 4, '"Lots of homework, worth it."'],
+            ['Honors Physics', 5, '"The labs are actually fun."'],
+            ['AP Literature', 3, '"Heavy reading load."'],
+        ];
+        const crCourse = document.getElementById('crCourse');
+        const crStars = document.querySelectorAll('#crStars .cr-star');
+        const crReview = document.getElementById('crReview');
+        if (crCourse) {
+            function runClassRate() {
+                let idx = 0;
+                function cycle() {
+                    const [name, rating, review] = crCourses[idx % crCourses.length];
+                    idx++;
+                    crCourse.textContent = name;
+                    crReview.classList.remove('show');
+                    crStars.forEach(s => s.classList.remove('lit', 'pop'));
+                    let s = 0;
+                    const iv = setInterval(() => {
+                        if (s < rating) {
+                            crStars[s].classList.add('lit', 'pop');
+                            const el = crStars[s];
+                            setTimeout(() => el.classList.remove('pop'), 220);
+                            s++;
+                        } else {
+                            clearInterval(iv);
+                            crReview.textContent = review;
+                            crReview.classList.add('show');
+                            setTimeout(cycle, 2600);
+                        }
+                    }, 260);
+                }
+                cycle();
+            }
+            whenVisible(crReview, runClassRate);
+        }
+
+        /* ---------- Agentic AI pipeline ---------- */
+        const aiNode1 = document.getElementById('aiNode1');
+        const aiNode2 = document.getElementById('aiNode2');
+        const aiNode3 = document.getElementById('aiNode3');
+        const aiPulse1 = document.getElementById('aiPulse1');
+        const aiPulse2 = document.getElementById('aiPulse2');
+        const aiStatus = document.getElementById('aiStatus');
+        const aiStatuses = ['Routing request…', 'Calling LangChain tool…', 'Responding to user…'];
+        function runAi() {
+            const nodes = [aiNode1, aiNode2, aiNode3];
+            let step = 0;
+            function pulse(el, cb) {
+                el.style.transition = 'none';
+                el.style.left = '0%';
+                el.style.opacity = '1';
+                requestAnimationFrameFallback(() => {
+                    el.style.transition = 'left 0.6s ease, opacity 0.6s ease';
+                    el.style.left = 'calc(100% - 7px)';
+                    setTimeout(() => { el.style.opacity = '0'; cb && cb(); }, 600);
+                });
+            }
+            function requestAnimationFrameFallback(cb) { setTimeout(cb, 20); }
+            function cycle() {
+                nodes.forEach(n => n.classList.remove('active'));
+                nodes[0].classList.add('active');
+                aiStatus.textContent = aiStatuses[0];
+                setTimeout(() => {
+                    pulse(aiPulse1, () => {
+                        nodes[1].classList.add('active');
+                        aiStatus.textContent = aiStatuses[1];
+                        setTimeout(() => {
+                            pulse(aiPulse2, () => {
+                                nodes[2].classList.add('active');
+                                aiStatus.textContent = aiStatuses[2];
+                                setTimeout(cycle, 1800);
+                            });
+                        }, 500);
+                    });
+                }, 500);
+            }
+            cycle();
+        }
+        if (aiStatus) whenVisible(aiStatus, runAi);
+
+        /* ---------- Experience: Capgemini sprint board ---------- */
+        const kbSlots = [document.getElementById('kbTodo'), document.getElementById('kbDoing'), document.getElementById('kbDone')];
+        const kbStatus = document.getElementById('kbStatus');
+        function runKanban() {
+            const tickets = ['AI agent 🤖', 'Mobile app 📱', 'VR demo 🥽'];
+            let t = 0;
+            kbSlots[2].innerHTML = '';
+            function move(el, i, label) {
+                el.classList.remove('on');
+                setTimeout(() => {
+                    if (label) el.textContent = label;
+                    kbSlots[i].appendChild(el);
+                    setTimeout(() => el.classList.add('on'), 30);
+                }, 320);
+            }
+            function cycle() {
+                const name = tickets[t % tickets.length];
+                t++;
+                const el = document.createElement('div');
+                el.className = 'kb-ticket';
+                el.textContent = name;
+                kbSlots[0].appendChild(el);
+                kbStatus.textContent = 'Ticket queued…';
+                setTimeout(() => el.classList.add('on'), 50);
+                setTimeout(() => { move(el, 1); kbStatus.textContent = 'Building…'; }, 1400);
+                setTimeout(() => { move(el, 2, name + ' ✓'); kbStatus.textContent = 'Shipped ✓'; }, 3000);
+                setTimeout(() => el.classList.remove('on'), 4800);
+                setTimeout(() => { el.remove(); cycle(); }, 5200);
+            }
+            cycle();
+        }
+        if (kbStatus) whenVisible(kbStatus, runKanban);
+
+        /* ---------- Experience: PRSM site builder ---------- */
+        const wbCanvas = document.getElementById('wbCanvas');
+        const wbStatus = document.getElementById('wbStatus');
+        function runWeb() {
+            const els = wbCanvas.querySelectorAll('.wb-el');
+            function cycle() {
+                els.forEach(e => e.classList.remove('on'));
+                wbStatus.textContent = 'Building client site…';
+                els.forEach((e, i) => setTimeout(() => e.classList.add('on'), 600 + i * 420));
+                setTimeout(() => { wbStatus.textContent = 'Shipped ✓'; }, 600 + els.length * 420 + 250);
+                setTimeout(cycle, 600 + els.length * 420 + 2600);
+            }
+            cycle();
+        }
+        if (wbCanvas) whenVisible(wbCanvas, runWeb);
+
+        /* ---------- Experience: Kumon worksheet ---------- */
+        const kmSheet = document.getElementById('kmSheet');
+        const kmGrade = document.getElementById('kmGrade');
+        function runKumon() {
+            const rows = kmSheet.querySelectorAll('.km-row');
+            const answers = ['21', '56', '9'];
+            function cycle() {
+                rows.forEach(r => { r.classList.remove('done'); r.querySelector('.km-a').textContent = ''; });
+                kmGrade.classList.remove('on');
+                rows.forEach((r, i) => {
+                    setTimeout(() => {
+                        r.querySelector('.km-a').textContent = answers[i];
+                        r.classList.add('done');
+                    }, 800 + i * 850);
+                });
+                setTimeout(() => kmGrade.classList.add('on'), 800 + rows.length * 850 + 150);
+                setTimeout(cycle, 800 + rows.length * 850 + 2800);
+            }
+            cycle();
+        }
+        if (kmSheet) whenVisible(kmSheet, runKumon);
+
+        /* ---------- Experience: Tech Academy editor ---------- */
+        const taCode = document.getElementById('taCode');
+        const taOut = document.getElementById('taOut');
+        const taSnippets = [
+            ['print("Hello, class!")', 'Hello, class!'],
+            ['print(6 * 7)', '42'],
+            ['print("You got this!")', 'You got this!'],
+        ];
+        function runTa() {
+            let s = 0;
+            function cycle() {
+                const [src, res] = taSnippets[s % taSnippets.length];
+                s++;
+                const chars = Array.from(src);
+                taOut.classList.remove('on');
+                let i = 0;
+                const iv = setInterval(() => {
+                    i++;
+                    taCode.textContent = chars.slice(0, i).join('');
+                    taCode.insertAdjacentHTML('beforeend', '<span class="ta-caret"></span>');
+                    if (i >= chars.length) {
+                        clearInterval(iv);
+                        setTimeout(() => { taOut.textContent = '>>> ' + res; taOut.classList.add('on'); }, 450);
+                        setTimeout(cycle, 3400);
+                    }
+                }, 60);
+            }
+            cycle();
+        }
+        if (taCode) whenVisible(taCode, runTa);
+
+        /* ---------- Unity caption cycle ---------- */
+        const unCaption = document.getElementById('unCaption');
+        const unCaptions = ['Prototyping in Unity…', 'Testing in VR…', 'Scripting in C#…'];
+        function runUnity() {
+            let i = 0;
+            setInterval(() => {
+                i = (i + 1) % unCaptions.length;
+                unCaption.style.opacity = '0';
+                setTimeout(() => {
+                    unCaption.textContent = unCaptions[i];
+                    unCaption.style.opacity = '1';
+                }, 300);
+            }, 2600);
+        }
+        if (unCaption) whenVisible(unCaption, runUnity);
     </script>
 </body>
 </html>
