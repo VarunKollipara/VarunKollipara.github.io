@@ -112,9 +112,10 @@
         /* ---------- Hero ---------- */
         .hero {
             position: relative; overflow: hidden;
-            min-height: 92svh; display: flex; flex-direction: column; justify-content: center;
+            min-height: 92svh; display: flex; align-items: center;
             padding-top: 100px; padding-bottom: 56px;
         }
+        .hero-inner { width: 100%; }
         .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; pointer-events: none; }
         .blob-1 { width: 380px; height: 380px; background: #C4B5FD; top: -100px; left: -110px; }
         .blob-2 { width: 320px; height: 320px; background: #FCD34D; top: 20px; right: -130px; opacity: 0.3; }
@@ -547,10 +548,11 @@
     <main>
 
         <!-- Hero -->
-        <section class="hero wrap" id="top">
+        <section class="hero" id="top">
             <div class="blob blob-1"></div>
             <div class="blob blob-2"></div>
             <div class="blob blob-3"></div>
+            <div class="wrap hero-inner">
             <p class="hero-kicker reveal">Hi, I'm Varun <span class="wave">👋</span> a software engineer in Minneapolis, MN</p>
             <h1 class="hero-name reveal" style="--d: 0.08s">I build <span class="hl">software people use.</span></h1>
             <p class="hero-tagline reveal" style="--d: 0.16s">From App Store apps to agentic AI systems<span class="caret" aria-hidden="true"></span></p>
@@ -564,6 +566,7 @@
                     Download resume
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </a>
+            </div>
             </div>
         </section>
 
