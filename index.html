@@ -403,11 +403,18 @@
 
         /* Agentic AI pipeline */
         .ai-demo { width: 100%; max-width: 300px; }
-        .ai-bot { text-align: center; font-size: 2.1rem; line-height: 1; margin-bottom: 14px; animation: bot-bob 3s ease-in-out infinite; }
-        @keyframes bot-bob {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            30% { transform: translateY(-7px) rotate(-4deg); }
-            60% { transform: translateY(-2px) rotate(3deg); }
+
+        /* Drawing Robot arm */
+        .rb-demo svg { display: block; }
+        .rb-trace {
+            fill: none; stroke: var(--violet); stroke-width: 3; stroke-linecap: round;
+            stroke-dasharray: 300; stroke-dashoffset: 300;
+            animation: rb-draw 6s ease-in-out infinite;
+        }
+        @keyframes rb-draw {
+            0% { stroke-dashoffset: 300; }
+            45%, 70% { stroke-dashoffset: 0; }
+            95%, 100% { stroke-dashoffset: -300; }
         }
         .ai-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
         .ai-node {
@@ -951,7 +958,6 @@
                     <article class="card rose reveal" style="--d: 0.06s">
                         <div class="demo rose-soft-bg">
                             <div class="ai-demo">
-                                <div class="ai-bot" aria-hidden="true">🤖</div>
                                 <div class="ai-row">
                                     <div class="ai-node" id="aiNode1">React UI</div>
                                     <div class="ai-track"><div class="ai-pulse" id="aiPulse1"></div></div>
@@ -1006,6 +1012,39 @@
                                 <span class="indigo-soft-bg indigo-text">C#</span>
                                 <span class="indigo-soft-bg indigo-text">VR</span>
                             </div>
+                        </div>
+                    </article>
+
+                    <!-- Drawing Robot -->
+                    <article class="card violet reveal" style="--d: 0.18s">
+                        <div class="demo violet-soft-bg">
+                            <div class="rb-demo">
+                                <svg width="240" height="150" viewBox="0 0 240 150">
+                                    <rect x="10" y="14" width="150" height="112" rx="8" fill="#fff" stroke="#E4DAF9" stroke-width="2"/>
+                                    <path class="rb-trace" d="M35 95 C 45 45, 75 40, 85 70 C 92 90, 110 92, 118 68 C 124 50, 138 48, 140 66"/>
+                                    <g stroke="#26221C" stroke-width="7" stroke-linecap="round" fill="none">
+                                        <path d="M215 132 L 196 88 L 160 62"/>
+                                    </g>
+                                    <circle cx="215" cy="132" r="11" fill="#26221C"/>
+                                    <circle cx="196" cy="88" r="7" fill="var(--violet)"/>
+                                    <circle cx="160" cy="62" r="6" fill="#26221C"/>
+                                    <rect x="196" y="136" width="38" height="8" rx="4" fill="#26221C"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-top">
+                                <span class="project-index">007</span>
+                                <span class="project-badge violet-soft-bg violet-text">Robotics</span>
+                            </div>
+                            <h3>Drawing Robot</h3>
+                            <p>A computer-vision + robotics project where a Lite 6 robot arm automatically traces, erases, and replicates dry-erase drawings on a whiteboard.</p>
+                            <div class="tags">
+                                <span class="violet-soft-bg violet-text">Python</span>
+                                <span class="violet-soft-bg violet-text">Computer Vision</span>
+                                <span class="violet-soft-bg violet-text">Robotics</span>
+                            </div>
+                            <a class="project-link violet-text" href="https://github.com/VarunKollipara/RoboticsFinalProject" target="_blank" rel="noopener">View on GitHub ↗</a>
                         </div>
                     </article>
 
