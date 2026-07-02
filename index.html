@@ -403,6 +403,12 @@
 
         /* Agentic AI pipeline */
         .ai-demo { width: 100%; max-width: 300px; }
+        .ai-bot { text-align: center; font-size: 2.1rem; line-height: 1; margin-bottom: 14px; animation: bot-bob 3s ease-in-out infinite; }
+        @keyframes bot-bob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            30% { transform: translateY(-7px) rotate(-4deg); }
+            60% { transform: translateY(-2px) rotate(3deg); }
+        }
         .ai-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
         .ai-node {
             flex: 1; text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--rose);
@@ -945,6 +951,7 @@
                     <article class="card rose reveal" style="--d: 0.06s">
                         <div class="demo rose-soft-bg">
                             <div class="ai-demo">
+                                <div class="ai-bot" aria-hidden="true">🤖</div>
                                 <div class="ai-row">
                                     <div class="ai-node" id="aiNode1">React UI</div>
                                     <div class="ai-track"><div class="ai-pulse" id="aiPulse1"></div></div>
